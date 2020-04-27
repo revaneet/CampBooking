@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{52701AC1-DDA5-48D9-850A-6B1C5F9506FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularUI", "AngularUI\AngularUI.csproj", "{8D3B700F-99A4-4A49-9EEF-248CB42B9B2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{52701AC1-DDA5-48D9-850A-6B1C5F9506FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52701AC1-DDA5-48D9-850A-6B1C5F9506FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52701AC1-DDA5-48D9-850A-6B1C5F9506FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3B700F-99A4-4A49-9EEF-248CB42B9B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3B700F-99A4-4A49-9EEF-248CB42B9B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3B700F-99A4-4A49-9EEF-248CB42B9B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3B700F-99A4-4A49-9EEF-248CB42B9B2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

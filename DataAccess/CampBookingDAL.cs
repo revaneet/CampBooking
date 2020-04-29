@@ -3,6 +3,7 @@ using DataAccess.DatabaseModels;
 using Shared.DTOModels;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,37 @@ namespace DataAccess
                 return allCampsDTO;
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+        }
+        // Get all Camps
+        public List<CampDTO> GetAllFilteredCampsDB(Dictionary<string,string> filters)
+        {
+            IQueryable<CampEntity> allCampsEntity;
+            List<CampDTO> allCampsDTO = new List<CampDTO>();
+            try
+            {
+                //allCampsEntity = from c in db.Camps
+                //                 where (from b in db.Bookings
+                //                        where DateTime.Parse(filters["checkIn"]) >= b.CheckOutDate
+                //                              && DateTime.Parse(filters["checkOut"]) <= b.CheckInDate
+                //                        select b.CampID).Contains(c.ID) && c.MaxCapacity >= Int32.Parse(filters["capacity"])
+                //                 select c;
+
+                allCampsEntity = (from c in db.Camps
+                                  join b in db.Bookings on c.ID equals b.CampID into subset
+                                  from s in subset
+                                  where DateTime.Parse(filters["checkIn"]) >= s.CheckOutDate
+                                        && DateTime.Parse(filters["checkOut"]) <= s.CheckInDate
+                                        && c.MaxCapacity >= int.Parse(filters["capacity"])
+                                  select c).Distinct();
+                                       
+
+                allCampsEntity.ToList().ForEach(c => allCampsDTO.Add(iMapper.Map<CampEntity, CampDTO>(c)));
+                return allCampsDTO;
+            }
+            catch (Exception e)
             {
                 throw e;
             }

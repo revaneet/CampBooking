@@ -11,6 +11,7 @@ namespace Services
     public class CampService
     {
         CampBookingDAL campBookingDAL = new CampBookingDAL();
+
         public List<CampDTO> GetAllCamps()
         {
             try
@@ -18,6 +19,18 @@ namespace Services
                 return campBookingDAL.GetAllCampsDB();
             }
             catch(Exception e)
+            {
+                throw e;
+            }
+
+        }
+        public List<CampDTO> GetAllFilteredCamps(Dictionary<string,string> filters)
+        {
+            try
+            {
+                return campBookingDAL.GetAllFilteredCampsDB( filters);
+            }
+            catch (Exception e)
             {
                 throw e;
             }

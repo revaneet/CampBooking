@@ -2,9 +2,11 @@
 using Shared.DTOModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace CampBooking.Controllers
@@ -20,7 +22,15 @@ namespace CampBooking.Controllers
             List<CampDTO> allCamps = new List<CampDTO>();
             try
             {
-                allCamps = campService.GetAllCamps();
+                var filters = Request.GetQueryNameValuePairs().ToDictionary(x => x.Key , x=>x.Value);
+                if(filters.Count()>0)
+                {
+                    allCamps = campService.GetAllFilteredCamps(filters);
+                }
+                else
+                {
+                    allCamps = campService.GetAllCamps();
+                }                
                 if (allCamps.Count > 0)
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, allCamps);
@@ -36,9 +46,9 @@ namespace CampBooking.Controllers
             }
             
         }
-
+       
         // GET: api/Camp/5
-        [HttpGet]
+        [HttpGet]   
         public string GetSelectedCamp(int id)
         {
             return "value";
@@ -46,10 +56,27 @@ namespace CampBooking.Controllers
 
         // POST: api/Camp
         [HttpPost]
-        public HttpResponseMessage PostNewCamp([FromBody]CampDTO campDTO)
+        public HttpResponseMessage PostNewCamp()
         {
             try
             {
+                string imageName = null;
+                var httpRequest = HttpContext.Current.Request;
+
+                var uploadedImg = httpRequest.Files["Image"];
+                imageName = Path.GetFileNameWithoutExtension(uploadedImg.FileName.Replace(" ", "-"));
+                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(uploadedImg.FileName);
+                var filePath = HttpContext.Current.Server.MapPath("~/CampImages/" + imageName);
+                uploadedImg.SaveAs(filePath);
+
+                CampDTO campDTO = new CampDTO
+                {
+                    CampName = httpRequest["campName"],
+                    MaxCapacity = int.Parse(httpRequest["maxCapacity"]),
+                    Description = httpRequest["desc"],
+                    RatePerNight = int.Parse(httpRequest["ratePerNight"]),
+                    Image = imageName
+                };
                 campService.PostNewCamp(campDTO);
 
             }
@@ -57,7 +84,7 @@ namespace CampBooking.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError);
             }
-            return Request.CreateResponse(HttpStatusCode.OK,campDTO);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // PUT: api/Camp/5

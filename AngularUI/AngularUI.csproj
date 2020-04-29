@@ -48,6 +48,8 @@
     <Content Include="e2e\protractor.conf.js" />
     <Content Include="karma.conf.js" />
     <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\campbooking\camp-new\camp-new.component.css" />
+    <Content Include="src\app\campbooking\camp-new\camp-new.component.html" />
     <Content Include="src\app\campbooking\CampBookingAssets\logo.png" />
     <Content Include="src\app\campbooking\camps\camps.component.css" />
     <Content Include="src\app\campbooking\camps\camps.component.html" />
@@ -55,6 +57,13 @@
     <Content Include="src\app\campbooking\containers\campbooking.component.html" />
     <Content Include="src\app\campbooking\home\home.component.css" />
     <Content Include="src\app\campbooking\home\home.component.html" />
+    <Content Include="src\assets\CampImages\Campmonk-3.jpeg" />
+    <Content Include="src\assets\CampImages\CampParadise-2.jpeg" />
+    <Content Include="src\assets\CampImages\CampView-1.jpg" />
+    <Content Include="src\assets\Images\banner.jpg" />
+    <Content Include="src\assets\Images\button-curve.png" />
+    <Content Include="src\assets\Images\dots-3.png" />
+    <Content Include="src\assets\Images\logo.png" />
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
   </ItemGroup>
@@ -65,10 +74,14 @@
     <TypeScriptCompile Include="src\app\app.component.spec.ts" />
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\camp-new\camp-new.component.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\campbooking-routing.module.ts" />
     <TypeScriptCompile Include="src\app\campbooking\campbooking.module.ts" />
     <TypeScriptCompile Include="src\app\campbooking\camps\camps.component.ts" />
     <TypeScriptCompile Include="src\app\campbooking\containers\campbooking.component.ts" />
     <TypeScriptCompile Include="src\app\campbooking\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\models\camp.interface.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\services\camp.service.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />

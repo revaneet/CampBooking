@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DTOModels\BookingDTO.cs" />
     <Compile Include="DTOModels\CampDTO.cs" />
+    <Compile Include="DTOModels\CampFilterDTO.cs" />
     <Compile Include="DTOModels\UserDTO.cs" />
     <Compile Include="Exceptions\BLLException.cs" />
     <Compile Include="Exceptions\DALException.cs" />

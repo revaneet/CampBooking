@@ -1,0 +1,33 @@
+a:hover,
+a:focus {
+	text-decoration: none;
+	outline: none;
+}
+.main-content{
+    margin-top: 20px;
+}
+ #bt-primary{
+    background-color: #69c6ba;
+ }
+ #bt-primary:hover{
+    background-color:  #c66995;
+ }
+
+.tm-recommended-place {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    background-color: white;
+}
+.tm-recommended-description-box {
+    padding: 30px;
+    width: 500px;
+}
+
+
+

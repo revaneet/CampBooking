@@ -4,7 +4,7 @@ a:focus {
 	outline: none;
 }
 .tm-recommended-place-wrap{
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 .tm-recommended-place {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
@@ -76,7 +76,7 @@ a:focus {
 #filterForm-div{
     background-color: #69c6ba;
     color: white;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 25px;    
 }
 .filterForm-header{
@@ -98,8 +98,7 @@ a:focus {
     color:white;
     background-color:  #c66995;
 }
-
 h6{
-    margin-top: 10px;
-    margin-bottom: 1px;
+    margin-top: 5px;
+    margin-top: 5px;
 }

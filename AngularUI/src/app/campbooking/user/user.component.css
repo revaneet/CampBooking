@@ -1,0 +1,24 @@
+a:hover,
+a:focus {
+	text-decoration: none;
+    outline: none;
+    
+}
+a{
+    color: #495057;
+}
+#user-container{
+    max-width: 600px;
+    margin-top: 30px;
+}
+.card-header{
+    background-color: white;
+}
+.card-body{
+    background-color: #69c6ba;
+    
+}
+.nav-item{
+    color: black;
+    font-size: 1.2rem;
+}

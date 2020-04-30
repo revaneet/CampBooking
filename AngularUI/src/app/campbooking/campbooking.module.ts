@@ -8,13 +8,16 @@ import { CommonModule } from '@angular/common';
 import { CampService } from './services/camp.service';
 import { CampNewComponent } from './camp-new/camp-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookingService } from './services/booking.service';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
     declarations: [
         CampBookingComponent,
         HomeComponent,
         CampsComponent,
-        CampNewComponent
+        CampNewComponent,
+        UserComponent
 
     ],
     imports : [
@@ -25,7 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
     ],
     providers: [
-        CampService
+        CampService,
+        BookingService
 
     ],
     exports : [

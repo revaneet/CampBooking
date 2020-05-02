@@ -1,7 +1,10 @@
+<div *ngIf="isLoginError" class="red-text center error-message">
+    <i class="material-icons">error</i> Incorrect email or password
+</div>
 <div class="main-content">
     <div class="tm-recommended-place" >
         <div class="tm-recommended-description-box">
-            <form class="needs-validation" novalidate [formGroup]="campForm" (ngSubmit)="onFormSubmit()">
+            <form class="needs-validation" novalidate [formGroup]='logInForm' (ngSubmit)="onFormSubmit()">
 
                 <div class="form-group">
                     <label for="userEmail">Email:</label>

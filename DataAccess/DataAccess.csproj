@@ -65,6 +65,10 @@
     <Compile Include="Migrations\202004251202570_IntialCreate.designer.cs">
       <DependentUpon>202004251202570_IntialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004301725462_RemovedUserForeignKey.cs" />
+    <Compile Include="Migrations\202004301725462_RemovedUserForeignKey.designer.cs">
+      <DependentUpon>202004301725462_RemovedUserForeignKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004251202570_IntialCreate.resx">
       <DependentUpon>202004251202570_IntialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004301725462_RemovedUserForeignKey.resx">
+      <DependentUpon>202004301725462_RemovedUserForeignKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

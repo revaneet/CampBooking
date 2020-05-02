@@ -37,5 +37,10 @@ export class CampService{
     return this.http.get<Camp[]>(this.url);
   }
 
+  async getCampById(campId)
+  {
+    return this.http.get<Camp>(this.url + `/${campId}`);
+  }
+
 
 }

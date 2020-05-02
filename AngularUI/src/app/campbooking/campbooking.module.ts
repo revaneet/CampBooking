@@ -10,6 +10,13 @@ import { CampNewComponent } from './camp-new/camp-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BookingService } from './services/booking.service';
 import { UserComponent } from './user/user.component';
+import { LogInComponent } from './user/login/login.component';
+import { SignUpComponent } from './user/signup/signup.component';
+import { UserService } from './services/user.service';
+import { AuthGuard } from './auth/auth.guard';
+import { DataService } from './services/data.service';
+import {CampInvoiceComponent } from './camp-invoice/camp-invoice.component';
+import { CampBookComponent } from './camp-book/camp-book.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +24,12 @@ import { UserComponent } from './user/user.component';
         HomeComponent,
         CampsComponent,
         CampNewComponent,
-        UserComponent
+        UserComponent,
+        LogInComponent,
+        SignUpComponent,
+        CampBookComponent,
+        CampInvoiceComponent
+       
 
     ],
     imports : [
@@ -29,7 +41,10 @@ import { UserComponent } from './user/user.component';
     ],
     providers: [
         CampService,
-        BookingService
+        BookingService,
+        UserService,
+        AuthGuard,
+        DataService
 
     ],
     exports : [

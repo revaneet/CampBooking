@@ -55,9 +55,13 @@ namespace DataAccess
         public List<CampDTO> GetAllFilteredCampsDB(Dictionary<string,string> filters)
         {
             IQueryable<CampEntity> allCampsEntity;
+            IQueryable<CampEntity> allCampsEntity2;
             List<CampDTO> allCampsDTO = new List<CampDTO>();
             try
             {
+                var capacity = Int32.Parse(filters["capacity"]);
+                var checkIn = DateTime.Parse(filters["checkIn"]);
+                var checkOut = DateTime.Parse(filters["checkOut"]);
                 //allCampsEntity = from c in db.Camps
                 //                 where (from b in db.Bookings
                 //                        where DateTime.Parse(filters["checkIn"]) >= b.CheckOutDate
@@ -66,15 +70,29 @@ namespace DataAccess
                 //                 select c;
 
                 allCampsEntity = (from c in db.Camps
-                                  join b in db.Bookings on c.ID equals b.CampID into subset
-                                  from s in subset
-                                  where DateTime.Parse(filters["checkIn"]) >= s.CheckOutDate
-                                        && DateTime.Parse(filters["checkOut"]) <= s.CheckInDate
-                                        && c.MaxCapacity >= int.Parse(filters["capacity"])
-                                  select c).Distinct();
-                                       
+                                  from b in db.Bookings
+                                  where c.MaxCapacity >= capacity
+                                        &&  ((c.ID == b.CampID) &&
+                                            (checkIn >= b.CheckOutDate
+                                            || checkOut <= b.CheckInDate))
+
+                                  select c);
+
+                allCampsEntity2 = (
+                                    from c in db.Camps
+                                    where c.MaxCapacity >= capacity
+                                    select c
+                                    ).Except
+                                    (
+                                        (from c in db.Camps
+                                         from b in db.Bookings
+                                         where c.ID == b.CampID
+                                         select c).Distinct()
+
+                                    ).Distinct();
 
                 allCampsEntity.ToList().ForEach(c => allCampsDTO.Add(iMapper.Map<CampEntity, CampDTO>(c)));
+                allCampsEntity2.ToList().ForEach(c => allCampsDTO.Add(iMapper.Map<CampEntity, CampDTO>(c)));
                 return allCampsDTO;
             }
             catch (Exception e)
@@ -92,6 +110,74 @@ namespace DataAccess
                 db.Camps.Add(campEntity);
                 db.SaveChanges();
 
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        // Get User
+        public UserDTO GetUserDB(string email,string password)
+        { 
+            try
+            {
+               var userEntity = (from u in db.Users
+                                 where u.Email == email && u.Password == password
+                                 select u ).SingleOrDefault();
+
+                return iMapper.Map<UserEntity, UserDTO>(userEntity);
+
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }            
+        }
+
+        //Get Camp by Id
+        public CampDTO GetCampByIdDB(int id)
+        {
+            try
+            {
+                var campEntity = (from c in db.Camps
+                                 where c.ID == id
+                                 select c).Single();
+
+                return iMapper.Map<CampEntity, CampDTO>(campEntity);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        // Post new Booking
+        public void PostNewBookingDB(BookingDTO bookingDTO)
+        {
+            try
+            {
+                BookingEntity bookingEntity = new BookingEntity();
+                bookingEntity = iMapper.Map<BookingDTO, BookingEntity>(bookingDTO);
+                db.Bookings.Add(bookingEntity);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        // Get booking by id
+        public BookingDTO GetBookingByIdDB(string bookingId)
+        {
+            try
+            {
+                BookingEntity bookingEntity = (from b in db.Bookings
+                                               where b.ID == bookingId
+                                               select b).Single();
+
+                return iMapper.Map<BookingEntity, BookingDTO>(bookingEntity);
             }
             catch(Exception e)
             {

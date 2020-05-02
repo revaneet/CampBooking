@@ -47,5 +47,16 @@ namespace Services
                 throw e;
             }
         }
+        public CampDTO GetCampById(int id)
+        {
+            try
+            {
+                return campBookingDAL.GetCampByIdDB(id);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

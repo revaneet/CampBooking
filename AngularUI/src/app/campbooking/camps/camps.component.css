@@ -4,7 +4,7 @@ a:focus {
 	outline: none;
 }
 .tm-recommended-place-wrap{
-    /* margin-top: 20px; */
+    margin-top: 10px;
 }
 .tm-recommended-place {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
@@ -76,8 +76,10 @@ a:focus {
 #filterForm-div{
     background-color: #69c6ba;
     color: white;
-    /* margin-top: 20px; */
-    margin-bottom: 25px;    
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding-bottom: 10px;  
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 .filterForm-header{
     text-align: center;
@@ -101,4 +103,10 @@ a:focus {
 h6{
     margin-top: 5px;
     margin-top: 5px;
+    margin-left: 3px;
+}
+input{
+    height: 30px;
+    max-width: 250px;
+    margin-left: 3px;
 }

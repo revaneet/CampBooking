@@ -14,8 +14,8 @@ namespace Shared.DTOModels
         [Required]       
         public int CampID { get; set; }
 
-        [Required]
-        public int UserID { get; set; }
+        //[Required]
+        //public int UserID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -40,6 +40,8 @@ namespace Shared.DTOModels
         public string ZipCode { get; set; }
 
         [Required]
-        public string PhoneNumber { get; set; }  
+        public string PhoneNumber { get; set; }
+
+        public CampDTO Camp { get; set; }
     }
 }

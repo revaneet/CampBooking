@@ -1,6 +1,8 @@
+import { Camp } from './camp.interface';
+
 export interface Booking{
+    ID?: string;
     CampID: number;
-    UserID: number;
     CheckInDate: Date;
     CheckOutDate: Date;
     BillingAddress: string;
@@ -8,4 +10,5 @@ export interface Booking{
     Country: string;
     ZipCode: string;
     PhoneNumber: string;
+    Camp?: Camp
 }

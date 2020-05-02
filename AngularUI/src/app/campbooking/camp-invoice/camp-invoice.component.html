@@ -1,0 +1,60 @@
+<div class="main-content">
+    <div class="tm-recommended-place" >
+        <div class="tm-recommended-description-box">
+            <div class="invoice-header">
+                <h1>Invoice {{booking.ID}}</h1>              
+            </div>
+            <div class="invoice">
+                <h5>
+                    Total Amount : {{TotalAmount}} INR
+                </h5>
+                <h5>
+                    Total Nights : {{TotalNights}} Nights
+                </h5>
+                <p>
+                    CheckIn Date: {{booking.CheckInDate}}
+                </p>
+                <p>
+                    CheckOut Date: {{booking.CheckOutDate}}
+                </p>
+                <p>
+                    Billing Address: {{booking.BillingAddress}}
+                </p>
+                <p>
+                    State : {{booking.State}}
+                </p>
+                <p>
+                    Country : {{booking.Country}}
+                </p>
+                <p>
+                    ZipCode : {{booking.ZipCode}}
+                </p>
+                <p>
+                    PhoneNumber : {{booking.PhoneNumber}}
+                </p>
+            </div>
+            <div class="btn-div">
+                <button type="submit" class="btn btn-primary" id="btn-primary">Edit Booking</button>
+                <button type="submit" class="btn btn-danger ml-2" id="btn-primary">Cancel Booking</button>
+            </div>
+        </div>
+        <div class="tm-recommended-price-box">
+            <!-- <div class="camp-header">
+                <h2>{{camp.CampName}}</h2>
+            </div> -->
+            <div >
+                <img src="/assets/CampImages/{{booking.Camp.Image}}" id="camp-image">
+            </div>
+            <div class="">
+                <div class="camp-details">
+                    <h3 class="tm-recommended-title">{{booking.Camp.CampName}}</h3>
+                    <p class="tm-text-highlight">Max Capacity: {{booking.Camp.MaxCapacity}}</p>
+                    <p class="tm-text-gray">
+                        {{booking.Camp.Description}}
+                    </p>   
+                </div> 
+            </div>
+
+        </div>                        
+    </div>
+</div>

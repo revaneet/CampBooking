@@ -49,9 +49,18 @@ namespace CampBooking.Controllers
        
         // GET: api/Camp/5
         [HttpGet]   
-        public string GetSelectedCamp(int id)
+        public HttpResponseMessage GetSelectedCamp(int id)
         {
-            return "value";
+            CampDTO campDTO = new CampDTO();
+            try
+            {
+                campDTO = this.campService.GetCampById(id);
+            }
+            catch(Exception)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Camp with id"+id+"doesn't exist");
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, campDTO);
         }
 
         // POST: api/Camp

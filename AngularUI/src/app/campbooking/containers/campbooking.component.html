@@ -13,13 +13,17 @@
                         <a class="nav-link active" routerLink="/Home">Home </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/Camp">Recommended Places</a>
+                        <a class="nav-link" routerLink="/Camps">Recommended Places</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tm-section-3">Manage Bookings</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tm-section-4">Contact Us</a>
+                    <li class="nav-item" *ngIf="userToken">
+                        <a class="nav-link" href="/Home" (click)="onLogOut()">LogOut ${{userToken}}</a>
+                    </li>
+                    <li class="nav-item" *ngIf="! 
+                    userToken">
+                        <a class="nav-link" href="/LogIn">LogIn</a>
                     </li>
                 </ul>
             </div>                            

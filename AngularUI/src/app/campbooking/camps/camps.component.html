@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-row">
                     <label for="checkOut"><h6>Check-Out :</h6></label>
-                    <input type="date" class="form-control" id="checkOut" formControlName="checkOut">
+                    <input type="date" class="form-control" id="checkOut" formControlName="checkOut" >
                     <div class="valid-feedback" >
                     Valid.
                     </div>
@@ -47,7 +47,7 @@
                         <p class="tm-text-highlight">{{camp.MaxCapacity}}</p>
                         <p class="tm-text-gray">{{camp.Description}}</p>   
                     </div>
-                    <a href="#" class="tm-recommended-price-box">
+                    <a class="tm-recommended-price-box" (click)="onBooking(camp)">
                         <p class="tm-recommended-price">INR {{camp.RatePerNight}}</p>
                         <p class="tm-recommended-price-link">Book Now</p>
                     </a>                        

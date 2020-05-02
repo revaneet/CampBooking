@@ -23,5 +23,6 @@ namespace Shared.DTOModels
         public string Description { get; set; }
 
         public string Image { get; set; }
+        
     }
 }

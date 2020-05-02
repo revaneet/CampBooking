@@ -57,6 +57,12 @@
     <Content Include="src\app\campbooking\containers\campbooking.component.html" />
     <Content Include="src\app\campbooking\home\home.component.css" />
     <Content Include="src\app\campbooking\home\home.component.html" />
+    <Content Include="src\app\campbooking\user\login\login.component.css" />
+    <Content Include="src\app\campbooking\user\login\login.component.html" />
+    <Content Include="src\app\campbooking\user\signup\signup.component.css" />
+    <Content Include="src\app\campbooking\user\signup\signup.component.html" />
+    <Content Include="src\app\campbooking\user\user.component.css" />
+    <Content Include="src\app\campbooking\user\user.component.html" />
     <Content Include="src\assets\CampImages\Campmonk-3.jpeg" />
     <Content Include="src\assets\CampImages\CampParadise-2.jpeg" />
     <Content Include="src\assets\CampImages\CampView-1.jpg" />
@@ -82,6 +88,9 @@
     <TypeScriptCompile Include="src\app\campbooking\home\home.component.ts" />
     <TypeScriptCompile Include="src\app\campbooking\models\camp.interface.ts" />
     <TypeScriptCompile Include="src\app\campbooking\services\camp.service.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\user\login\login.component.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\user\signup\signup.component.ts" />
+    <TypeScriptCompile Include="src\app\campbooking\user\user.component.ts" />
     <TypeScriptCompile Include="src\environments\environment.prod.ts" />
     <TypeScriptCompile Include="src\environments\environment.ts" />
     <TypeScriptCompile Include="src\main.ts" />

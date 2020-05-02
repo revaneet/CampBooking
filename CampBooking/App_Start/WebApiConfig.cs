@@ -20,8 +20,8 @@ namespace CampBooking
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            var cors = new EnableCorsAttribute("*", "*", "*");//origins,headers,methods   
-            config.EnableCors(cors);
+            //var cors = new EnableCorsAttribute("*", "*", "*");//origins,headers,methods   
+            //config.EnableCors(cors);
         }
     }
 }

@@ -18,9 +18,9 @@ namespace DataAccess.DatabaseModels
         [ForeignKey("CampEntity")]
         public int CampID { get; set; }
 
-        [Required]
-        [ForeignKey("UserEntity")]
-        public int UserID { get; set; }
+        //[Required]
+        //[ForeignKey("UserEntity")]
+        //public int UserID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -49,6 +49,6 @@ namespace DataAccess.DatabaseModels
 
         public virtual CampEntity CampEntity { get; set; }
 
-        public virtual UserEntity UserEntity { get; set; }
+        //public virtual UserEntity UserEntity { get; set; }
     }
 }

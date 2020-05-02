@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
     styleUrls : ['./campbooking.component.css']
 })
 export class CampBookingComponent{
+    userToken = localStorage.getItem('userToken') !== null;
+
+    onLogOut()
+    {
+        localStorage.removeItem('userToken');
+    }
 
 }

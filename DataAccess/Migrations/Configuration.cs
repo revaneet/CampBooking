@@ -42,8 +42,7 @@
                 new BookingEntity
                 {
                     ID ="Dq1Avn4d",
-                    CampID =1,
-                    UserID =2,
+                    CampID =1,               
                     BillingAddress ="191 , preet vihar",
                     State ="Amritsar",
                     Country ="India",

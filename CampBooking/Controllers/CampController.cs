@@ -82,13 +82,23 @@ namespace CampBooking.Controllers
                 var filePath = HttpContext.Current.Server.MapPath("~/CampImages/" + imageName);
                 uploadedImg.SaveAs(filePath);
 
+                Image image = Image.FromFile(filePath);
+
+                MemoryStream m = new MemoryStream();
+                image.Save(m, image.RawFormat);
+                byte[] imageBytes = m.ToArray();
+
+                // Convert byte[] to Base64 String
+                string base64String = Convert.ToBase64String(imageBytes);
+
                 CampDTO campDTO = new CampDTO
                 {
                     CampName = httpRequest["campName"],
                     MaxCapacity = int.Parse(httpRequest["maxCapacity"]),
                     Description = httpRequest["desc"],
                     RatePerNight = int.Parse(httpRequest["ratePerNight"]),
-                    Image = imageName
+                    Image = imageName,
+                    ImageFile = base64String
                 };
                 campService.PostNewCamp(campDTO);
 

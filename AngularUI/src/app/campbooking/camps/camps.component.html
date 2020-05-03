@@ -7,7 +7,7 @@
             <form class="needs-validation" novalidate [formGroup]="filterCampsForm" (ngSubmit)="filterCamps()">
                 <div class="form-row">
                     <label for="checkIn"><h6>Check-In :</h6></label>
-                    <input type="date" class="form-control" id="checkIn" formControlName="checkIn">
+                    <input type="date" class="form-control" id="checkIn" formControlName="checkIn" [value]="getToday()">
                     <div class="valid-feedback" >
                     Valid.
                     </div>
@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-row">
                     <label for="checkOut"><h6>Check-Out :</h6></label>
-                    <input type="date" class="form-control" id="checkOut" formControlName="checkOut" >
+                    <input type="date" class="form-control" id="checkOut" formControlName="checkOut" [value]="getTomorrow()">
                     <div class="valid-feedback" >
                     Valid.
                     </div>
@@ -41,7 +41,7 @@
         <div class="col-md-9">
             <div class="tm-recommended-place-wrap">
                 <div class="tm-recommended-place" *ngFor="let camp of camps">
-                    <img src="assets/CampImages/{{camp.Image}}" alt="Image" class="img-fluid tm-recommended-img">
+                    <img [src]= "transform(camp.ImageFile)" alt="Image" class="img-fluid tm-recommended-img">
                     <div class="tm-recommended-description-box">
                         <h3 class="tm-recommended-title">{{camp.CampName}}</h3>
                         <p class="tm-text-highlight">{{camp.MaxCapacity}}</p>

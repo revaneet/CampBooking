@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,8 @@ namespace Shared.DTOModels
 
         public string Image { get; set; }
 
-        public byte[] ImageFile { get; set; }
+        [Column(TypeName = "varchar(MAX)")]
+        public string ImageFile { get; set; }
         
     }
 }

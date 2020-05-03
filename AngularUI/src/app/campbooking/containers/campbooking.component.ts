@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user.interface';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector : 'app-campbooking',
@@ -12,12 +13,21 @@ export class CampBookingComponent implements OnInit{
     userClaims: User;
     IsAdmin:false;
 
+    navigationSubscription;
     constructor(
-        private userService: UserService
-    ){
-        this.userToken = localStorage.getItem('userToken') !== null;
+        private router: Router
+    )
+    {
+        this.navigationSubscription = this.router.events
+            .subscribe((e: any) => {
+            if (e instanceof NavigationEnd) {
+                this.userToken = localStorage.getItem('userToken') !== null;
+            }
+            
+        });
 
     }
+    
     async ngOnInit(){
         this.userToken = localStorage.getItem('userToken') !== null;
         
@@ -25,7 +35,7 @@ export class CampBookingComponent implements OnInit{
     
     onLogOut()
     {
-        
+
         localStorage.removeItem('userToken');
     }
 

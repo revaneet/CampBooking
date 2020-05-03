@@ -90,4 +90,7 @@ export class CampBookComponent implements OnInit{
                 this.router.navigate(['Camps/Invoice',bookingId]);
             });
     }
+    transform(base64Image){
+        return 'data:image/jpeg;base64,' + base64Image;
+    }
 }

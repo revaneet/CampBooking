@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CampFilter } from '../models/campFilter.interface';
 import { DataService } from '../services/data.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
+import { $ } from 'protractor';
 
 @Component({
     selector : 'app-camps',
@@ -22,8 +25,8 @@ export class CampsComponent implements OnInit{
     constructor(
         private campService: CampService,
         private router: Router,
-        private data: DataService
-
+        private data: DataService,
+        private datePipe: DatePipe
     ){
         this.getAllCamps();
     }
@@ -67,5 +70,24 @@ export class CampsComponent implements OnInit{
         this.router.navigate(['Camps', camp.ID]);
 
         this.data.set(this.campFilter);
+
+
+    }
+    transform(base64Image){
+        return 'data:image/jpeg;base64,' + base64Image;
+    }
+    getToday()
+    {
+        const d = new Date();
+        console.log(d.getDate());
+        return this.datePipe.transform(d,'dd-MM-yyyy');
+    }
+    getTomorrow()
+    {
+        let d = new Date();
+        d.setDate(d.getDate() + 1);
+        d.getDate();
+        return this.datePipe.transform(d, 'dd-MM-yyyy');
+
     }
 }

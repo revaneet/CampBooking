@@ -50,11 +50,7 @@ export class CampUpdateComponent implements OnInit{
                     desc : this.camp.Description
                    
                })
-               this.imageUrl = "assets/CampImages/"+this.camp.Image;
         });
-        
-
-
     }
 
     async onFormSubmit()
@@ -72,5 +68,8 @@ export class CampUpdateComponent implements OnInit{
             };
         reader.readAsDataURL(this.imageToUpload);
 
+    }
+    transform(base64Image){
+        return 'data:image/jpeg;base64,' + base64Image;
     }
 }

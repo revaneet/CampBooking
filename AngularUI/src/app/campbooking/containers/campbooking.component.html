@@ -12,13 +12,13 @@
                         <li class="nav-item">
                         <a class="nav-link active" routerLink="/Home">Home </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" >
                         <a class="nav-link" routerLink="/Camps">Recommended Places</a>
                     </li>
-                    <li class="nav-item" >
+                    <li class="nav-item" *ngIf=" !userToken">
                         <a class="nav-link" routerLink="/ManageBookings">Manage Bookings</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" *ngIf=" userToken">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown">Manage Camps</a>
                         <div class="dropdown-menu">
                           <a class="dropdown-item" routerLink="/NewCamp">Add new camp</a>

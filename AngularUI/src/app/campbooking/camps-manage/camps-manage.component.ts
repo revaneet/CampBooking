@@ -3,6 +3,7 @@ import { CampService } from '../services/camp.service';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { Camp } from '../models/camp.interface';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector : 'app-camps-manage',
@@ -14,7 +15,8 @@ export class CampsManageComponent implements OnInit{
     constructor(
         private campService: CampService,
         private router: Router,
-        private data: DataService
+        private data: DataService,
+        private sanitizer:DomSanitizer
 
     ){
         this.getAllCamps();
@@ -36,6 +38,9 @@ export class CampsManageComponent implements OnInit{
         this.router.navigate(['ManageBookings/UpdateCamp',camp.ID]);
 
 
+    }
+    transform(base64Image){
+        return 'data:image/jpeg;base64,' + base64Image;
     }
     
 }

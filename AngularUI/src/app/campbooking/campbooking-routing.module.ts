@@ -15,7 +15,11 @@ import { CampUpdateComponent } from './camp-update/camp-update.component';
 
 
 const routes: Routes = [
-  { path: 'Home', component: HomeComponent },
+  { 
+    path: 'Home',
+    component: HomeComponent,
+    runGuardsAndResolvers: 'always'
+  },
   { path: 'Camps', component: CampsComponent },
   {path: 'NewCamp' , component: CampNewComponent , canActivate:[AuthGuard] },
   {path: 'ManageCamps' , component: CampsManageComponent , canActivate:[AuthGuard] },
@@ -46,7 +50,10 @@ const routes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes,
+      {
+        onSameUrlNavigation: 'reload'
+      })
   ],
   exports: [
     RouterModule

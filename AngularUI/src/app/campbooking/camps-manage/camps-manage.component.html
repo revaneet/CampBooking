@@ -1,0 +1,20 @@
+<div class="container-fluid">
+    <div class="tm-recommended-place-wrap">
+        <div class="tm-recommended-place" *ngFor="let camp of camps">
+            <img src="assets/CampImages/{{camp.Image}}" alt="Image" class="img-fluid tm-recommended-img">
+            <div class="tm-recommended-description-box">
+                <h3 class="tm-recommended-title">{{camp.CampName}}</h3>
+                <p class="tm-text-highlight">{{camp.MaxCapacity}}</p>
+                <p class="tm-text-gray">{{camp.Description}}</p>   
+            </div>
+            <div>
+                <a class="tm-recommended-price-box" (click)="onUpdateClick(camp)">
+                   <!-- <p class="tm-recommended-price">INR {{camp.RatePerNight}}</p> -->
+                    <p class="tm-recommended-price">Update Camp &raquo;</p>
+                </a> 
+               
+            </div>                       
+        </div>
+    </div>
+</div>
+

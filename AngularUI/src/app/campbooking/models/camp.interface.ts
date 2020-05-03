@@ -5,4 +5,5 @@ export interface Camp {
     MaxCapacity: number ;
     Description: string ;
     Image: string;
+    ImageFile: Uint32List[];
 }

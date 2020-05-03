@@ -15,15 +15,22 @@
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/Camps">Recommended Places</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tm-section-3">Manage Bookings</a>
+                    <li class="nav-item" >
+                        <a class="nav-link" routerLink="/ManageBookings">Manage Bookings</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Manage Camps</a>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" routerLink="/NewCamp">Add new camp</a>
+                          <a class="dropdown-item" routerLink="/ManageCamps">Manage existing camps</a>
+                        </div>
+                    </li>
+                   
                     <li class="nav-item" *ngIf="userToken">
-                        <a class="nav-link" href="/Home" (click)="onLogOut()">LogOut ${{userToken}}</a>
+                        <a class="nav-link" routerLink="/Home" (click)="onLogOut()">LogOut ${{userToken}}</a>
                     </li>
-                    <li class="nav-item" *ngIf="! 
-                    userToken">
-                        <a class="nav-link" href="/LogIn">LogIn</a>
+                    <li class="nav-item" *ngIf="!userToken">
+                        <a class="nav-link" routerLink="/LogIn">LogIn</a>
                     </li>
                 </ul>
             </div>                            

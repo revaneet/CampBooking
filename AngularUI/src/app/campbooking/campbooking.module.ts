@@ -17,6 +17,9 @@ import { AuthGuard } from './auth/auth.guard';
 import { DataService } from './services/data.service';
 import {CampInvoiceComponent } from './camp-invoice/camp-invoice.component';
 import { CampBookComponent } from './camp-book/camp-book.component';
+import { BookingsManageComponent } from './bookings-manage/bookings-manage.component';
+import { CampsManageComponent } from './camps-manage/camps-manage.component';
+import { CampUpdateComponent } from './camp-update/camp-update.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,10 @@ import { CampBookComponent } from './camp-book/camp-book.component';
         LogInComponent,
         SignUpComponent,
         CampBookComponent,
-        CampInvoiceComponent
+        CampInvoiceComponent,
+        BookingsManageComponent,
+        CampsManageComponent,
+        CampUpdateComponent
        
 
     ],

@@ -2,11 +2,14 @@
 using Shared.DTOModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
+using System.Web.Hosting;
 using System.Web.Http;
 
 namespace CampBooking.Controllers
@@ -33,6 +36,7 @@ namespace CampBooking.Controllers
                 }                
                 if (allCamps.Count > 0)
                 {
+                    
                     return Request.CreateResponse(HttpStatusCode.OK, allCamps);
                 }
                 else

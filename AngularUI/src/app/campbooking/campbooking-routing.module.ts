@@ -9,12 +9,16 @@ import { LogInComponent } from './user/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 import { CampBookComponent } from './camp-book/camp-book.component';
 import { CampInvoiceComponent } from './camp-invoice/camp-invoice.component';
+import { BookingsManageComponent } from './bookings-manage/bookings-manage.component';
+import { CampsManageComponent } from './camps-manage/camps-manage.component';
+import { CampUpdateComponent } from './camp-update/camp-update.component';
 
 
 const routes: Routes = [
   { path: 'Home', component: HomeComponent },
   { path: 'Camps', component: CampsComponent },
   {path: 'NewCamp' , component: CampNewComponent , canActivate:[AuthGuard] },
+  {path: 'ManageCamps' , component: CampsManageComponent , canActivate:[AuthGuard] },
   {
     path: 'SignUp', component: UserComponent,
     children: [{ path: '', component: SignUpComponent }]
@@ -28,6 +32,12 @@ const routes: Routes = [
   },
   {
     path: 'Camps/Invoice/:bookingId' , component: CampInvoiceComponent
+  },
+  {
+    path: 'ManageBookings' , component: BookingsManageComponent
+  },
+  {
+    path: 'ManageBookings/UpdateCamp/:id' , component: CampUpdateComponent
   },
   { path: '**', redirectTo: '/Home', pathMatch: 'full' }
 

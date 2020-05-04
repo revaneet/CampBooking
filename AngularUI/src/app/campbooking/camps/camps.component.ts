@@ -41,6 +41,8 @@ export class CampsComponent implements OnInit{
             capacity: this.capacityControl
         });
         this.getAllCamps();
+        this.getToday();
+        this.getTomorrow();
 
     }
     async filterCamps()

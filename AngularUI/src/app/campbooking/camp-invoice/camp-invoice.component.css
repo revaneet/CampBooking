@@ -64,8 +64,12 @@ a:focus {
     
 }
 h1{
+    font-size: 3rem;
     
-    margin-bottom: 10px;
+}
+h2{
+  margin-top: 2px;  
+  margin-bottom: 4px;
 }
 .invoice{
     margin-top: 30px;
@@ -75,7 +79,34 @@ p{
     margin-bottom: 2px;
 }
 .btn-div{
-    margin-top: 30px;
+    margin-top: 10px;
+}
+
+.rating-list li {
+    float: left;
+    color: #ddd;
+    padding: 5px ;
+  }
+  
+.rating-list li:hover,
+.rating-list li:hover ~ li, .rating-list li.selected {
+    color: #ffd700;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+#star-div{
+    margin-left: 20px;
+    margin-bottom: 0px;
+}
+.tm-recommended-title{
+    font-size: 2rem;
+}
+.tm-text-highlight{
+    font-size: 1.1rem;
+    margin-bottom: 5px;
 }
 
 

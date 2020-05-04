@@ -67,6 +67,7 @@ export class CampUpdateComponent implements OnInit{
             this.imageUrl = event.target.result;
             };
         reader.readAsDataURL(this.imageToUpload);
+        
 
     }
     transform(base64Image){

@@ -5,6 +5,8 @@ a:focus {
 }
 .tm-recommended-place-wrap{
     margin-top: 10px;
+    max-width: 900px;
+    margin-left: 90px;
 }
 .tm-recommended-place {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);

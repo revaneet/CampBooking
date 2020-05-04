@@ -20,6 +20,12 @@ import { CampBookComponent } from './camp-book/camp-book.component';
 import { BookingsManageComponent } from './bookings-manage/bookings-manage.component';
 import { CampsManageComponent } from './camps-manage/camps-manage.component';
 import { CampUpdateComponent } from './camp-update/camp-update.component';
+import { BookingUpdateComponent } from './booking-update/booking-update.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { StarRatingComponent } from './star-rating/star-rating.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -34,16 +40,20 @@ import { CampUpdateComponent } from './camp-update/camp-update.component';
         CampInvoiceComponent,
         BookingsManageComponent,
         CampsManageComponent,
-        CampUpdateComponent
-       
+        CampUpdateComponent,
+        BookingUpdateComponent,
+        StarRatingComponent
 
     ],
     imports : [
         CampBookingRoutingModule,
         HttpClientModule,
         CommonModule,
-        ReactiveFormsModule
-
+        ReactiveFormsModule,
+        MatSnackBarModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatIconModule
     ],
     providers: [
         CampService,

@@ -5,12 +5,12 @@
                 <h1>Invoice {{booking.ID}}</h1>              
             </div>
             <div class="invoice">
-                <h5>
-                    Total Amount : {{TotalAmount}} INR
-                </h5>
-                <h5>
-                    Total Nights : {{TotalNights}} Nights
-                </h5>
+                <h2>
+                    Total Amount : {{totalAmount}} INR
+                </h2>
+                <h2>
+                    Total Nights : {{totalNights}} Nights
+                </h2>
                 <p>
                     CheckIn Date: {{booking.CheckInDate}}
                 </p>
@@ -33,10 +33,27 @@
                     PhoneNumber : {{booking.PhoneNumber}}
                 </p>
             </div>
-            <div class="btn-div">
-                <button type="submit" class="btn btn-primary" id="btn-primary">Edit Booking</button>
-                <button type="submit" class="btn btn-danger ml-2" id="btn-primary">Cancel Booking</button>
+            <div class="row">
+                <div class="col-sm-1">
+                    <h3>Rating:</h3>
+                </div>
+                <div class="col-sm-10" id="star-div">
+                    <ul class="list-inline rating-list" 
+                        *ngFor="let star of stars" style="display: inline-block" >
+                          <li (click)="countStar(star)"
+                              [ngClass]="{'selected': (star <= selectedValue)}">
+                            <i class="fa fa-star"></i>
+                          </li> 
+                    </ul>
+                </div>
             </div>
+            <div class="btn-div">
+                <button type="submit" class="btn btn-primary" [disabled]="checkDates()" (click)="onUpdateClick()">Edit Booking</button>
+                <button type="submit" class="btn btn-danger ml-2" [disabled]="checkDates()" (click)="onCancelClick()">Cancel Booking</button>
+                
+            </div>
+            
+            
         </div>
         <div class="tm-recommended-price-box">
             <!-- <div class="camp-header">
@@ -49,6 +66,7 @@
                 <div class="camp-details">
                     <h3 class="tm-recommended-title">{{booking.Camp.CampName}}</h3>
                     <p class="tm-text-highlight">Max Capacity: {{booking.Camp.MaxCapacity}}</p>
+                    <p class="tm-text-highlight">Rate per Night: {{booking.Camp.RatePerNight}}</p>
                     <p class="tm-text-gray">
                         {{booking.Camp.Description}}
                     </p>   

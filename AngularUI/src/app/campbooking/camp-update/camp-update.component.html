@@ -43,7 +43,8 @@
               </form>
         </div>
         <div class="tm-recommended-price-box">
-            <img id="previewImage" [src]="imageUrl" >
+            <img id="previewImage"  [src]="transform(camp.ImageFile)" *ngIf="imageUrl ==null" >
+            <img id="previewImage"  [src]="imageUrl" *ngIf="imageUrl !=null">
         </div>                        
     </div>
 </div>

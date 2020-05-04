@@ -16,4 +16,8 @@ export class BookingService{
     {                           
         return this.http.get<Booking>(this.url+`/${bookingId}`);
     }
+    async deleteBookingById(bookingId:string)
+    {
+        return this.http.delete(this.url+`${bookingId}`);
+    }
 }

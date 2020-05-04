@@ -7,7 +7,8 @@
                         <div class="row">
                             <div class="col-xs-12 mx-auto tm-about-text-wrap text-center">                        
                                 <h2 class="text-uppercase mb-4">Your <strong>Journey</strong> is our priority</h2>
-                                                             
+                                <input class="form-control" placeholder="Enter Invoice Number" type="text" #searchInput>   
+                                <a routerLink="/Camp" class="text-uppercase btn-primary tm-btn" (click)="onManageClick(searchInput.value)">Manage Booking</a>                            
                             </div>
                         </div>           
                     </section>                   

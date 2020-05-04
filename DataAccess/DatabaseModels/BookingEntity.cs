@@ -47,6 +47,8 @@ namespace DataAccess.DatabaseModels
         [Required]
         public string PhoneNumber { get; set; }
 
+        public int Ratings { get; set; } = 0;
+
         public virtual CampEntity CampEntity { get; set; }
 
         //public virtual UserEntity UserEntity { get; set; }

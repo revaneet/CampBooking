@@ -22,11 +22,10 @@ a:focus {
     align-items: stretch;
     justify-content: space-around;
     margin-bottom: 25px;
-    min-height: 470px;
 }
 .tm-recommended-description-box {
     padding: 30px;
-    width: 450px;
+    width: 500px;
 }
 
 .tm-recommended-price-box {    
@@ -50,38 +49,19 @@ a:focus {
     -webkit-box-pack: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
-    justify-content: space-around;
+    justify-content:space-evenly;
     width: 500px;
     transition: all 0.3s ease;
 }
-.camp-details{
-    padding: 20px;
-    width: 450px;
+#camp-details{
+    margin-top: 0px;
+    padding: 10px;
+    min-width: 450px;
     background-color: white;
 }
 #camp-image{
-    max-width: 300px;
-    
+    max-width: 450px;
 }
-h1{
-    font-size: 3rem;
-    
-}
-h2{
-  margin-top: 2px;  
-  margin-bottom: 4px;
-}
-.invoice{
-    margin-top: 30px;
-}
-p{
-    margin-top: 2px;
-    margin-bottom: 2px;
-}
-.btn-div{
-    margin-top: 10px;
-}
-
 .rating-list li {
     float: left;
     color: #ddd;
@@ -107,5 +87,20 @@ p{
     font-size: 1.1rem;
     margin-bottom: 5px;
 }
+.btn-div{
+    margin-top: 10px;
+}
+h1{
+    font-size: 3rem;
+    
+}
+h2{
+  margin-top: 2px;  
+  margin-bottom: 4px;
+}
+.invoice{
+    margin-top: 10px;
+}
+
 
 

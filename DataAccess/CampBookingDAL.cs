@@ -184,6 +184,38 @@ namespace DataAccess
                 throw e;
             }
         }
+        public void PutBookingByIdDB(string bookingId,BookingDTO bookingDTO)
+        {
+            try
+            {
+                BookingEntity bookingEntity = db.Bookings.Find(bookingId);
+                bookingEntity.BillingAddress = bookingDTO.BillingAddress;
+                bookingEntity.Country = bookingDTO.Country;
+                bookingEntity.PhoneNumber = bookingDTO.PhoneNumber;
+                bookingEntity.Ratings = bookingDTO.Ratings;
+                bookingEntity.State = bookingDTO.State;
+                bookingEntity.ZipCode = bookingDTO.ZipCode;
+                db.SaveChanges();
+
+                UpdateRatings(bookingDTO.CampID);
+
+
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+        public void UpdateRatings(int campId)
+        {
+            var avgRating = (from b in db.Bookings
+                             where b.CampID == campId
+                             select b.Ratings).Average();
+            CampEntity campEntity = db.Camps.Find(campId);
+
+            campEntity.Ratings = (int)Math.Ceiling(avgRating);
+            db.SaveChanges();
+        }
 
     }
 }

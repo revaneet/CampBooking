@@ -14,7 +14,7 @@ export class CampInvoiceComponent implements OnInit{
     totalNights: number;
     totalAmount: number;
     stars: number[] = [1, 2, 3, 4, 5];
-    selectedValue: number;
+    selectedStarValue: number;
     
     constructor(
         private route: ActivatedRoute,
@@ -29,6 +29,7 @@ export class CampInvoiceComponent implements OnInit{
                 this.booking = booking;
                 this.getNumberofNights();
                 this.totalAmount = this.totalNights * this.booking.Camp.RatePerNight;
+                this.selectedStarValue = this.booking.Ratings;
         }) 
         
         console.log(this.booking);      
@@ -60,13 +61,10 @@ export class CampInvoiceComponent implements OnInit{
                 this.router.navigate(['/Home']);
             })
     }
-    onUpdateClick()
+    onEditClick()
     {
-
+        this.router.navigate(['/ManageBookings/Invoice/EditBooking',this.booking.ID]);
     }
-    countStar(star) {
-        this.selectedValue = star;
-        console.log('Value of star', star);
-      }
+    
     
 }

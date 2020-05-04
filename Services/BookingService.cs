@@ -33,5 +33,16 @@ namespace Services
                 throw e;
             }
         }
+        public void PutBookingById(string bookingId , BookingDTO bookingDTO)
+        {
+            try
+            {
+                this.campBookingDAL.PutBookingByIdDB(bookingId, bookingDTO);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

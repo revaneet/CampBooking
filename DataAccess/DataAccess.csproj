@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202005031118099_Added ImageFile.designer.cs">
       <DependentUpon>202005031118099_Added ImageFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005041129424_Added Ratings.cs" />
+    <Compile Include="Migrations\202005041129424_Added Ratings.designer.cs">
+      <DependentUpon>202005041129424_Added Ratings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005031118099_Added ImageFile.resx">
       <DependentUpon>202005031118099_Added ImageFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005041129424_Added Ratings.resx">
+      <DependentUpon>202005041129424_Added Ratings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

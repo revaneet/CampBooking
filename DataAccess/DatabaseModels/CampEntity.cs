@@ -24,6 +24,8 @@ namespace DataAccess.DatabaseModels
 
         public string Description { get; set; }
 
+        public int Ratings { get; set; } = 0;
+
         public string Image { get; set; }
 
         [Column(TypeName = "varchar(MAX)")]

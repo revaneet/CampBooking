@@ -35,7 +35,7 @@ export class CampsManageComponent implements OnInit{
     }
     onUpdateClick(camp:Camp)
     {
-        this.router.navigate(['ManageBookings/UpdateCamp',camp.ID]);
+        this.router.navigate(['ManageCamps/UpdateCamp',camp.ID]);
 
 
     }

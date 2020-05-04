@@ -63,8 +63,18 @@ namespace CampBooking.Controllers
 
         // PUT: api/Booking/5
         [HttpPut]
-        public void PutSelectedBooking(int id, [FromBody]string value)
+        [Route("api/Booking/{bookingId}")]
+        public HttpResponseMessage PutSelectedBooking(string bookingId, [FromBody]BookingDTO bookingDTO)
         {
+            try
+            {
+                this.bookingService.PutBookingById(bookingId, bookingDTO);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE: api/Booking/5

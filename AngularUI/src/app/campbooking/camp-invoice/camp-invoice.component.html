@@ -34,21 +34,19 @@
                 </p>
             </div>
             <div class="row">
-                <div class="col-sm-1">
+                <div class="col-sm-2">
                     <h3>Rating:</h3>
                 </div>
-                <div class="col-sm-10" id="star-div">
-                    <ul class="list-inline rating-list" 
-                        *ngFor="let star of stars" style="display: inline-block" >
-                          <li (click)="countStar(star)"
-                              [ngClass]="{'selected': (star <= selectedValue)}">
+                <div class="col-sm-10">
+                    <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
+                        <li  [ngClass]=" { 'selected': (star <= selectedStarValue) } ">
                             <i class="fa fa-star"></i>
-                          </li> 
+                        </li> 
                     </ul>
                 </div>
             </div>
             <div class="btn-div">
-                <button type="submit" class="btn btn-primary" [disabled]="checkDates()" (click)="onUpdateClick()">Edit Booking</button>
+                <button type="submit" class="btn btn-primary" [disabled]="checkDates()" (click)="onEditClick()">Edit Booking</button>
                 <button type="submit" class="btn btn-danger ml-2" [disabled]="checkDates()" (click)="onCancelClick()">Cancel Booking</button>
                 
             </div>
@@ -62,7 +60,7 @@
             <div >
                 <img src="/assets/CampImages/{{booking.Camp.Image}}" id="camp-image">
             </div>
-            <div class="">
+            <div >
                 <div class="camp-details">
                     <h3 class="tm-recommended-title">{{booking.Camp.CampName}}</h3>
                     <p class="tm-text-highlight">Max Capacity: {{booking.Camp.MaxCapacity}}</p>

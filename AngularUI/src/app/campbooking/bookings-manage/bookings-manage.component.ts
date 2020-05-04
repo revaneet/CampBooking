@@ -19,7 +19,7 @@ export class BookingsManageComponent{
             this.router.navigate(['/ManageBookings']);
         }
         else{
-            this.router.navigate(['/Camps/Invoice',bookingId]);
+            this.router.navigate(['/ManageBookings/Invoice',bookingId]);
         }
 
     }

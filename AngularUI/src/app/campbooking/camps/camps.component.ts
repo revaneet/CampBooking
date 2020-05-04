@@ -20,7 +20,8 @@ export class CampsComponent implements OnInit{
     checkInControl: FormControl;
     checkOutControl: FormControl;
     capacityControl: FormControl;
-    campFilter: CampFilter;   
+    campFilter: CampFilter;  
+    
 
     constructor(
         private campService: CampService,

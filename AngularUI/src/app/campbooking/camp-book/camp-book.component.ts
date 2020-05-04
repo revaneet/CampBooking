@@ -15,17 +15,19 @@ import { DataService } from '../services/data.service';
 })
 export class CampBookComponent implements OnInit{
     campFilter: CampFilter;
-
+    booking: Booking;    
+    bookingId: string;
     camp: Camp;
+    totalAmount:number;
+    totalNights:number;
+
     bookingForm: FormGroup;
     billingAddress: FormControl;
     state: FormControl;
     country: FormControl;
     zipCode: FormControl;
     phoneNumber: FormControl;
-    booking: Booking;
-    nightStayNumber : number;
-    bookingId: string;
+    
 
     constructor(
         private bookingService: BookingService,
@@ -50,26 +52,18 @@ export class CampBookComponent implements OnInit{
 
         
     }
-    DaysBetween(StartDate, EndDate) {
-        const oneDay = 1000 * 60 * 60 * 24;
-
-        const start = new Date().setUTCDate(StartDate);
-        const end = new Date().setUTCDate(EndDate);
-      
-     
-        return (start - end) / oneDay;
-      }
-
     async ngOnInit() {
         const campId = this.route.snapshot.paramMap.get('id');
         (await this.campService.getCampById(campId))
             .subscribe((camp: Camp) => {
                 this.camp = camp;
+                this.campFilter = this.data.campFilter;
+                this.getNumberofNights();
+                this.totalAmount = this.totalNights * this.camp.RatePerNight;
         });
-        this.campFilter = this.data.campFilter;
-        this.nightStayNumber = this.DaysBetween(this.campFilter.CheckInDate, this.campFilter.CheckOutDate);
+        
+        
     }
-
     async onFormSubmit()
     {
         this.booking = {
@@ -92,5 +86,13 @@ export class CampBookComponent implements OnInit{
     }
     transform(base64Image){
         return 'data:image/jpeg;base64,' + base64Image;
+    }
+    getNumberofNights()
+    {
+        var date1 = new Date(this.campFilter.CheckInDate);
+        var date2 = new Date(this.campFilter.CheckOutDate);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        this.totalNights = Math.ceil(timeDiff / (1000 * 3600 * 24));    
+
     }
 }

@@ -28,6 +28,8 @@ namespace Shared.DTOModels
 
         [Column(TypeName = "varchar(MAX)")]
         public string ImageFile { get; set; }
-        
+
+        public int Ratings { get; set; }
+
     }
 }

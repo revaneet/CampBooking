@@ -6,5 +6,6 @@ export interface Camp {
     Description: string ;
     Image: string;
     ImageFile: string;
+    Ratings?:number;
 
 }

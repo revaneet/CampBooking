@@ -10,5 +10,6 @@ export interface Booking{
     Country: string;
     ZipCode: string;
     PhoneNumber: string;
-    Camp?: Camp
+    Camp?: Camp;
+    Ratings?:number;
 }

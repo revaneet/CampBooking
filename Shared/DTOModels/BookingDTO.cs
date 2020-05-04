@@ -42,6 +42,8 @@ namespace Shared.DTOModels
         [Required]
         public string PhoneNumber { get; set; }
 
+        public int Ratings { get; set; }
+
         public CampDTO Camp { get; set; }
     }
 }

@@ -60,3 +60,12 @@ a:focus {
 .tm-right {
     display: inline-block;   
 }
+#camp-details{
+    margin-top: 0px;
+    padding: 10px;
+    min-width: 450px;
+    background-color: white;
+}
+#camp-image{
+    max-width: 450px;
+}

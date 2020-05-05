@@ -33,7 +33,7 @@ export class CampUpdateComponent implements OnInit{
         this.ratePerNight = new FormControl('', [Validators.required] );
         this.maxCapacity = new FormControl('', [Validators.required] );
         this.desc = new FormControl();
-        this.campImage=new FormControl();
+        this.campImage=new FormControl('',[Validators.required] );
         this.campForm = new FormGroup({
             campName : this.campName,
             ratePerNight : this.ratePerNight,
@@ -97,4 +97,10 @@ export class CampUpdateComponent implements OnInit{
     transform(base64Image){
         return 'data:image/jpeg;base64,' + base64Image;
     }
+    getControlValidationClasses(control: FormControl) {
+        return {
+          'is-invalid': control.touched && control.invalid,
+          'is-valid': control.touched && control.valid
+        };
+      }
 }

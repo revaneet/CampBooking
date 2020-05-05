@@ -115,6 +115,12 @@ export class BookingEditComponent{
         console.log("here click");
         (await this.bookingService.deleteBookingById(this.booking.ID)).subscribe();
     }
+    getControlValidationClasses(control: FormControl) {
+        return {
+          'is-invalid': control.touched && control.invalid,
+          'is-valid': control.touched && control.valid
+        };
+      }
 
 
 }

@@ -5,37 +5,42 @@
 
                 <div class="form-group">
                   <label for="CampName">Camp Name:</label>
-                  <input type="text" class="form-control" id="CampName" formControlName="campName" required>
-                  <div class="valid-feedback">Valid</div>
-                  <div class="invalid-feedback">Please fill out this field.</div>
+                  <input type="text" class="form-control" id="CampName" formControlName="campName" required 
+                  [ngClass]="getControlValidationClasses(campName)">
+                  <div class="valid-feedback" *ngIf="campName.valid">Valid</div>
+                  <div class="invalid-feedback" *ngIf="campName.touched && campName.errors?.required">Please fill out this field.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="RatePerNight">Rate Per Night:</label>
-                    <input type="number" class="form-control" id="RatePerNight" formControlName="ratePerNight" required>
-                    <div class="valid-feedback">Valid</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <input type="number" class="form-control" id="RatePerNight" formControlName="ratePerNight" required
+                    [ngClass]="getControlValidationClasses(ratePerNight)">
+                    <div class="valid-feedback" *ngIf="ratePerNight.valid">Valid</div>
+                    <div class="invalid-feedback" *ngIf="ratePerNight.touched && ratePerNight.errors?.required">Please fill out this field.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="MaxCapacity">Maximum Capacity:</label>
-                    <input type="number" class="form-control" id="MaxCapacity" formControlName="maxCapacity" required>
-                    <div class="valid-feedback">Valid</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <input type="number" class="form-control" id="MaxCapacity" formControlName="maxCapacity" required
+                    [ngClass]="getControlValidationClasses(maxCapacity)">
+                    <div class="valid-feedback" *ngIf="maxCapacity.valid">Valid</div>
+                    <div class="invalid-feedback" *ngIf="maxCapacity.touched && maxCapacity.errors?.required">Please fill out this field.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="Description">Description:</label>
-                    <input type="text" class="form-control" id="Description" formControlName="desc" required>
-                    <div class="valid-feedback">Valid</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <input type="text" class="form-control" id="Description" formControlName="desc" required
+                    [ngClass]="getControlValidationClasses(desc)">
+                    <div class="valid-feedback" *ngIf="desc.valid">Valid</div>
+                    <div class="invalid-feedback" *ngIf="desc.touched && desc.errors?.required">Please fill out this field.</div>
                 </div>
 
                 <div class="form-group">
                     <label for="CampImage">Upload Camp Image:</label>
-                    <input type="file" class="form-control" id="CampImage" formControlName="campImage" required (change)="onImageUpload($event.target.files)" >
-                    <div class="valid-feedback">Valid</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <input type="file" class="form-control" id="CampImage" formControlName="campImage" required (change)="onImageUpload($event.target.files)" 
+                    [ngClass]="getControlValidationClasses(campImage)">
+                    <div class="valid-feedback" *ngIf="campImage.valid">Valid</div>
+                    <div class="invalid-feedback" *ngIf="campImage.touched && campImage.errors?.required">Please fill out this field.</div>
                 </div>
                 <button type="submit" class="btn btn-primary" id="btn-primary">Update Camp</button>
                 <button type="button" class="btn btn-danger ml-2" id="btn-primary" (click)="onDeleteClick()">Delete Camp</button>

@@ -69,5 +69,11 @@ export class CampNewComponent implements OnInit{
     transform(base64Image){
         return 'data:image/jpeg;base64,' + base64Image;
     }
+    getControlValidationClasses(control: FormControl) {
+        return {
+          'is-invalid': control.touched && control.invalid,
+          'is-valid': control.touched && control.valid
+        };
+      }
 
 }

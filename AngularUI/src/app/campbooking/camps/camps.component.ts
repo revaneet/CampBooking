@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Camp } from '../models/camp.interface';
 import { CampService } from '../services/camp.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CampFilter } from '../models/campFilter.interface';
 import { DataService } from '../services/data.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
-import { $ } from 'protractor';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
     selector : 'app-camps',
@@ -16,13 +15,15 @@ import { $ } from 'protractor';
 })
 export class CampsComponent implements OnInit{
     camps: Camp[];
+    currentCampsToShow:Camp[];
     filterCampsForm: FormGroup;
     checkInControl: FormControl;
     checkOutControl: FormControl;
     capacityControl: FormControl;
-    campFilter: CampFilter;  
-    
-
+    campFilter: CampFilter; 
+    totalCamps:number; 
+    stars: number[] = [1, 2, 3, 4, 5];
+    selectedStarValue: number;
     constructor(
         private campService: CampService,
         private router: Router,
@@ -32,7 +33,7 @@ export class CampsComponent implements OnInit{
         this.getAllCamps();
     }
 
-    ngOnInit(): void {
+    async ngOnInit(){
         this.checkInControl = new FormControl();
         this.checkOutControl = new FormControl();
         this.capacityControl = new FormControl();
@@ -42,16 +43,21 @@ export class CampsComponent implements OnInit{
             capacity: this.capacityControl
         });
         this.getAllCamps();
-        this.getToday();
-        this.getTomorrow();
-
+        this.filterCampsForm.setValue({
+            checkOut:this.getTomorrow(),
+            checkIn:this.getToday(),
+            capacity:0
+        });
+        
     }
     async filterCamps()
     {
         const{checkIn, checkOut, capacity} = this.filterCampsForm.value;
+        console.log(checkIn);
         (await this.campService.getAllFilteredCamps(checkIn, checkOut, capacity))
                    .subscribe((camps: Camp[]) => {
                        this.camps = camps;
+                       this.currentCampsToShow=camps;
         });
     }
     async getAllCamps()
@@ -59,8 +65,9 @@ export class CampsComponent implements OnInit{
         (await this.campService.getAllCamps())
             .subscribe((camps: Camp[]) => {
                 this.camps = camps;
+                this.currentCampsToShow=camps.slice(0,4);
+                this.totalCamps = this.camps.length;
         });
-        console.log(this.camps);
     }
     onBooking(camp: Camp)
     {
@@ -70,11 +77,8 @@ export class CampsComponent implements OnInit{
             Capacity: this.filterCampsForm.get('capacity').value
 
         };
-        this.router.navigate(['Camps', camp.ID]);
-
         this.data.set(this.campFilter);
-
-
+        this.router.navigate(['Camps', camp.ID]);
     }
     transform(base64Image){
         return 'data:image/jpeg;base64,' + base64Image;
@@ -82,15 +86,17 @@ export class CampsComponent implements OnInit{
     getToday()
     {
         const d = new Date();
-        console.log(d.getDate());
-        return this.datePipe.transform(d,'dd-MM-yyyy');
+        return this.datePipe.transform(d,'yyyy-MM-dd');
     }
     getTomorrow()
     {
         let d = new Date();
         d.setDate(d.getDate() + 1);
         d.getDate();
-        return this.datePipe.transform(d, 'dd-MM-yyyy');
+        return this.datePipe.transform(d, 'yyyy-MM-dd');
 
     }
+    onPageChange($event) {
+        this.currentCampsToShow =  this.camps.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
+      }
 }

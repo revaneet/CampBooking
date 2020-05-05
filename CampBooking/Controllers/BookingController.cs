@@ -77,10 +77,36 @@ namespace CampBooking.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
+        // PUT: api/Booking/5
+        [HttpPut]
+        [Route("api/Booking/PutRatings/{bookingId}")]
+        public HttpResponseMessage PutRatings(string bookingId, [FromBody]int ratings)
+        {
+            try
+            {
+                this.bookingService.PutRatingsByBookingId(bookingId, ratings);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
         // DELETE: api/Booking/5
         [HttpDelete]
-        public void DeleteSlectedBooking(int id)
+        [Route("api/Booking/{bookingId}")]
+        public HttpResponseMessage DeleteSlectedBooking(string bookingId)
         {
+            try
+            {
+                bookingService.DeleteBookingById(bookingId);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

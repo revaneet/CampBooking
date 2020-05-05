@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CampService } from '../services/camp.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Camp } from '../models/camp.interface';
+import { stringify } from 'querystring';
 
 @Component({
     selector : 'app-camp-update',
@@ -11,6 +12,7 @@ import { Camp } from '../models/camp.interface';
 })
 export class CampUpdateComponent implements OnInit{
     camp: Camp;
+    updateCamp: Camp;
     campForm: FormGroup;
     campName: FormControl;
     ratePerNight: FormControl;
@@ -55,8 +57,28 @@ export class CampUpdateComponent implements OnInit{
 
     async onFormSubmit()
     {
-        
+        this.updateCamp ={
+            CampName : this.campForm.get("campName").value,
+            RatePerNight : this.campForm.get("ratePerNight").value,
+            MaxCapacity: this.campForm.get("maxCapacity").value,
+            Description: this.campForm.get("desc").value,
+            Image : this.imageToUpload.name,
+            ImageFile: this.camp.ImageFile
+        };
+        (await this.campService.putCampById(this.camp.ID,this.updateCamp))
+        .subscribe(()=>{
+            alert("Camp Updated Successfully !");
+            this.router.navigate(["/Camps"]);
+        });
 
+    }
+    async onDeleteClick()
+    {
+        (await this.campService.deleteCampById(this.camp.ID))
+        .subscribe(() =>{
+            alert("Camp deleted successfully");
+            this.router.navigate(['/Camps']);
+        });
     }
     onImageUpload(image: FileList)
     {
@@ -65,9 +87,11 @@ export class CampUpdateComponent implements OnInit{
         const reader = new FileReader();
         reader.onload = (event: any) => {
             this.imageUrl = event.target.result;
-            };
+            this.camp.ImageFile = reader.result.toString().split(',')[1];
+            
+        };
         reader.readAsDataURL(this.imageToUpload);
-        
+        //this.camp.ImageFile = this.imageUrl;
 
     }
     transform(base64Image){

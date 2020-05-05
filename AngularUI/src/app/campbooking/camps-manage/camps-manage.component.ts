@@ -36,8 +36,6 @@ export class CampsManageComponent implements OnInit{
     onUpdateClick(camp:Camp)
     {
         this.router.navigate(['ManageCamps/UpdateCamp',camp.ID]);
-
-
     }
     transform(base64Image){
         return 'data:image/jpeg;base64,' + base64Image;

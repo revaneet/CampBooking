@@ -184,6 +184,7 @@ namespace DataAccess
                 throw e;
             }
         }
+        // Edit Booking by Id
         public void PutBookingByIdDB(string bookingId,BookingDTO bookingDTO)
         {
             try
@@ -206,16 +207,94 @@ namespace DataAccess
                 throw e;
             }
         }
+        //Delete Bookings by Id
+        public void DeleteBookingByIdDB(string bookingId)
+        {
+            try
+            {
+                BookingEntity bookingEntity = db.Bookings.Find(bookingId);
+                var campId = bookingEntity.CampID;
+                db.Bookings.Remove(bookingEntity);
+                db.SaveChanges();
+                UpdateRatings(campId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        }
+        public void PutRatingsByBookingIdDB(string bookingId, int ratings)
+        {
+            try
+            {
+                BookingEntity bookingEntity = db.Bookings.Find(bookingId);
+                bookingEntity.Ratings = ratings;
+                db.SaveChanges();
+                UpdateRatings(bookingEntity.CampID);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        // Update Ratings of Camp By Id
         public void UpdateRatings(int campId)
         {
-            var avgRating = (from b in db.Bookings
-                             where b.CampID == campId
-                             select b.Ratings).Average();
-            CampEntity campEntity = db.Camps.Find(campId);
+            try
+            {
+                var avgRating = (from b in db.Bookings
+                                 where b.CampID == campId
+                                 select b.Ratings).Average();
+                CampEntity campEntity = db.Camps.Find(campId);
 
-            campEntity.Ratings = (int)Math.Ceiling(avgRating);
-            db.SaveChanges();
+                campEntity.Ratings = (int)Math.Ceiling(avgRating);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
         }
+
+        //Delete Camp By Id
+        public void DeleteCampByIdDB(int campId)
+        {
+            try
+            {
+                CampEntity campEntity = db.Camps.Find(campId);
+                db.Camps.Remove(campEntity);
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+
+        }
+        public void PutCampByIdDB(int campId,CampDTO campDTO)
+        {
+            try
+            {
+                CampEntity campEntity = db.Camps.Find(campId);
+                campEntity.CampName = campDTO.CampName;
+                campEntity.Description = campDTO.Description;
+                campEntity.Image = campDTO.Image;
+                campEntity.ImageFile = campDTO.ImageFile;
+                campEntity.RatePerNight = campDTO.RatePerNight;
+                campEntity.MaxCapacity = campDTO.MaxCapacity;
+                db.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        
+
+
 
     }
 }

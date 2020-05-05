@@ -68,9 +68,10 @@ a:focus {
     padding: 5px ;
   }
   
- .rating-list li.selected {
+  .rating-list li:hover,
+  .rating-list li:hover ~ li, .rating-list li.selected {
     color: #ffd700;
-}
+  }
 
 .rating-list {
     display: inline-block;

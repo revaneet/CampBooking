@@ -42,7 +42,7 @@
               </form>
         </div>
         <div class="tm-recommended-price-box">
-            <img id="previewImage" [src]="imageUrl" >
+            <img id="previewImage" [src]="transform(image64Base)"  *ngIf="image64Base">
         </div>                        
     </div>
 </div>

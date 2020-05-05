@@ -18,10 +18,15 @@ export class BookingService{
     }
     async deleteBookingById(bookingId:string)
     {
+
         return this.http.delete(this.url+`/${bookingId}`);
     }
     async putBookingById(bookingId,booking)
     {
         return this.http.put(this.url+`/${bookingId}`,booking);
+    }
+    async putRatingByBookingId(bookingId,rating)
+    {
+        return this.http.put(this.url+`/PutRatings/${bookingId}`,rating);
     }
 }

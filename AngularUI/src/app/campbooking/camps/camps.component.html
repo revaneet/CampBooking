@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-md-3" id="filterForm-div">
             <div class="filterForm-header">
-                <h3>Search</h3>
+                <h1>Search</h1>
             </div>
             <form class="needs-validation" novalidate [formGroup]="filterCampsForm" (ngSubmit)="filterCamps()">
                 <div class="form-row">
-                    <label for="checkIn"><h6>Check-In :</h6></label>
+                    <label for="checkIn"><h3>Check-In :</h3></label>
                     <input type="date" class="form-control" id="checkIn" formControlName="checkIn" [value]="getToday()">
                     <div class="valid-feedback" >
                     Valid.
@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <label for="checkOut"><h6>Check-Out :</h6></label>
+                    <label for="checkOut"><h3>Check-Out :</h3></label>
                     <input type="date" class="form-control" id="checkOut" formControlName="checkOut" [value]="getTomorrow()">
                     <div class="valid-feedback" >
                     Valid.
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <label for="text"><h6>Capacity :</h6></label>
+                    <label for="text"><h3>Capacity :</h3></label>
                     <input type="number" class="form-control" id="text" formControlName="capacity">
                     <div class="valid-feedback" >
                     Looks good!
@@ -36,24 +36,44 @@
                     </div>
                 </div>            
             <button class="btn btn-primary" id="btn-primary" type="submit">Search</button>
-          </form>
+            </form>
         </div>
         <div class="col-md-9">
             <div class="tm-recommended-place-wrap">
-                <div class="tm-recommended-place" *ngFor="let camp of camps">
+                <div class="tm-recommended-place" *ngFor="let camp of currentCampsToShow,let i=index;">
                     <img [src]= "transform(camp.ImageFile)" alt="Image" class="img-fluid tm-recommended-img">
                     <div class="tm-recommended-description-box">
                         <h3 class="tm-recommended-title">{{camp.CampName}}</h3>
-                        <p class="tm-text-highlight">{{camp.MaxCapacity}}</p>
+                        <p class="tm-text-highlight">Max Capacity: {{camp.MaxCapacity}}</p>
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <h3>Rating:</h3>
+                            </div>
+                            <div class="col-sm-10">
+                                <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
+                                    <li  [ngClass]=" { 'selected': (star <= camp.Ratings) } ">
+                                        <i class="fa fa-star"></i>
+                                    </li> 
+                                </ul>
+                            </div>
+                        </div>
                         <p class="tm-text-gray">{{camp.Description}}</p>   
                     </div>
                     <a class="tm-recommended-price-box" (click)="onBooking(camp)">
                         <p class="tm-recommended-price">INR {{camp.RatePerNight}}</p>
                         <p class="tm-recommended-price-link">Book Now</p>
                     </a>                        
-                </div>
-            </div>
+                </div>    
+            </div>            
         </div>
+    </div>
+    <div>  
+        <mat-paginator 
+                (page)="onPageChange($event)"
+                [length]="totalCamps"
+                [pageSize]="4"
+                [showFirstLastButtons]="true">
+        </mat-paginator>
     </div>
 </div>
 

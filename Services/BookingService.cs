@@ -44,5 +44,28 @@ namespace Services
                 throw e;
             }
         }
+        public void DeleteBookingById(string bookingId)
+        {
+            try
+            {
+                this.campBookingDAL.DeleteBookingByIdDB(bookingId);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public void PutRatingsByBookingId(string bookingId,int ratings)
+        {
+            try
+            {
+                this.campBookingDAL.PutRatingsByBookingIdDB(bookingId,ratings);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

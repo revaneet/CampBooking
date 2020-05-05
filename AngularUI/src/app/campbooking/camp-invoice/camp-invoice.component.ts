@@ -65,6 +65,11 @@ export class CampInvoiceComponent implements OnInit{
     {
         this.router.navigate(['/ManageBookings/Invoice/EditBooking',this.booking.ID]);
     }
+    async countStar(star) {
+        this.selectedStarValue = star;
+        (await this.bookingService.putRatingByBookingId(this.bookingId, star)).subscribe();
+        console.log('Value of star', star);
+    }
     
     
 }

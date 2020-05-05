@@ -15,7 +15,7 @@ a:focus {
     align-items: stretch;
     justify-content: space-around;
     margin-bottom: 25px;
-    height: 180px;
+    height: 200px;
 }
 
 .tm-recommended-title {
@@ -100,13 +100,40 @@ a:focus {
     color:white;
     background-color:  #c66995;
 }
-h6{
-    margin-top: 5px;
-    margin-top: 5px;
-    margin-left: 3px;
+h3{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    
 }
 input{
     height: 30px;
     max-width: 250px;
     margin-left: 3px;
+}
+.rating-list li {
+    float: left;
+    color: #ddd;
+    padding: 5px ;
+  }
+  
+ .rating-list li.selected {
+    color: #ffd700;
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
+}
+#star-div{
+    margin-left: 2px;
+    margin-bottom: 0px;
+}
+
+.tm-text-highlight{
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+}
+.tm-text-gray
+{
+    margin-top: 0px;
 }

@@ -110,6 +110,11 @@ export class BookingEditComponent{
         this.totalNights = Math.ceil(timeDiff / (1000 * 3600 * 24));    
 
     }
+    async onCancelClick()
+    {
+        console.log("here click");
+        (await this.bookingService.deleteBookingById(this.booking.ID)).subscribe();
+    }
 
 
 }

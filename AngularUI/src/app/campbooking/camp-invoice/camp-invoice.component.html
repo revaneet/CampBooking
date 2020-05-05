@@ -33,13 +33,13 @@
                     PhoneNumber : {{booking.PhoneNumber}}
                 </p>
             </div>
-            <div class="row">
+            <div class="row" *ngIf="checkDates()">
                 <div class="col-sm-2">
                     <h3>Rating:</h3>
                 </div>
                 <div class="col-sm-10">
                     <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block" >
-                        <li  [ngClass]=" { 'selected': (star <= selectedStarValue) } ">
+                        <li  (click)="countStar(star)" [ngClass]=" { 'selected': (star <= selectedStarValue) } ">
                             <i class="fa fa-star"></i>
                         </li> 
                     </ul>

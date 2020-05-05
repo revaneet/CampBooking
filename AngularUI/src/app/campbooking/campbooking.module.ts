@@ -26,6 +26,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import {MatIconModule} from '@angular/material/icon';
         MatSnackBarModule,
         MatTooltipModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        MatPaginatorModule
     ],
     providers: [
         CampService,

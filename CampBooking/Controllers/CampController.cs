@@ -32,7 +32,11 @@ namespace CampBooking.Controllers
                 }
                 else
                 {
-                    allCamps = campService.GetAllCamps();
+                    var today = DateTime.Today;
+                    filters["checkIn"] = today.ToString();
+                    filters["checkOut"] = today.AddDays(1).ToString();
+                    filters["capacity"] = "0";
+                    allCamps = campService.GetAllFilteredCamps(filters);
                 }                
                 if (allCamps.Count > 0)
                 {
@@ -52,74 +56,112 @@ namespace CampBooking.Controllers
         }
        
         // GET: api/Camp/5
-        [HttpGet]   
-        public HttpResponseMessage GetSelectedCamp(int id)
+        [HttpGet]
+        [Route("api/Camp/GetSelectedCamp/{campId}")]
+        public HttpResponseMessage GetSelectedCamp(int campId)
         {
             CampDTO campDTO = new CampDTO();
             try
             {
-                campDTO = this.campService.GetCampById(id);
+                campDTO = this.campService.GetCampById(campId);
             }
             catch(Exception)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Camp with id"+id+"doesn't exist");
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound,"Camp with id"+campId+"doesn't exist");
             }
             return Request.CreateResponse(HttpStatusCode.OK, campDTO);
         }
 
         // POST: api/Camp
+        //[HttpPost]
+        //public HttpResponseMessage PostNewCamp()
+        //{
+        //    try
+        //    {
+        //        string imageName = null;
+        //        var httpRequest = HttpContext.Current.Request;
+
+        //        var uploadedImg = httpRequest.Files["Image"];
+        //        imageName = Path.GetFileNameWithoutExtension(uploadedImg.FileName.Replace(" ", "-"));
+        //        imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(uploadedImg.FileName);
+        //        var filePath = HttpContext.Current.Server.MapPath("~/CampImages/" + imageName);
+        //        uploadedImg.SaveAs(filePath);
+
+        //        Image image = Image.FromFile(filePath);
+
+        //        MemoryStream m = new MemoryStream();
+        //        image.Save(m, image.RawFormat);
+        //        byte[] imageBytes = m.ToArray();
+
+        //        // Convert byte[] to Base64 String
+        //        string base64String = Convert.ToBase64String(imageBytes);
+
+        //        CampDTO campDTO = new CampDTO
+        //        {
+        //            CampName = httpRequest["campName"],
+        //            MaxCapacity = int.Parse(httpRequest["maxCapacity"]),
+        //            Description = httpRequest["desc"],
+        //            RatePerNight = int.Parse(httpRequest["ratePerNight"]),
+        //            Image = imageName,
+        //            ImageFile = base64String
+        //        };
+        //        campService.PostNewCamp(campDTO);
+
+        //    }
+        //    catch(Exception)
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.InternalServerError);
+        //    }
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
+
+        //POST: api/Camp
         [HttpPost]
-        public HttpResponseMessage PostNewCamp()
+        [Authorize]
+        public HttpResponseMessage PostNewCamp([FromBody]CampDTO campDTO)
         {
             try
             {
-                string imageName = null;
-                var httpRequest = HttpContext.Current.Request;
-
-                var uploadedImg = httpRequest.Files["Image"];
-                imageName = Path.GetFileNameWithoutExtension(uploadedImg.FileName.Replace(" ", "-"));
-                imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(uploadedImg.FileName);
-                var filePath = HttpContext.Current.Server.MapPath("~/CampImages/" + imageName);
-                uploadedImg.SaveAs(filePath);
-
-                Image image = Image.FromFile(filePath);
-
-                MemoryStream m = new MemoryStream();
-                image.Save(m, image.RawFormat);
-                byte[] imageBytes = m.ToArray();
-
-                // Convert byte[] to Base64 String
-                string base64String = Convert.ToBase64String(imageBytes);
-
-                CampDTO campDTO = new CampDTO
-                {
-                    CampName = httpRequest["campName"],
-                    MaxCapacity = int.Parse(httpRequest["maxCapacity"]),
-                    Description = httpRequest["desc"],
-                    RatePerNight = int.Parse(httpRequest["ratePerNight"]),
-                    Image = imageName,
-                    ImageFile = base64String
-                };
                 campService.PostNewCamp(campDTO);
-
             }
-            catch(Exception)
+            catch(Exception e)
             {
-                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
             }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // PUT: api/Camp/5
         [HttpPut]
-        public void PutSelectedCamp(int id, [FromBody]string value)
+        [Authorize]
+        public HttpResponseMessage PutSelectedCamp(int id, [FromBody]CampDTO campDTO)
         {
+            try
+            {
+                campService.PutCampById(id, campDTO);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // DELETE: api/Camp/5
-        [HttpPost]
-        public void DeleteSelectedCamp(int id)
+        [HttpDelete]
+        [Authorize]
+        [Route("api/Camp/DeleteSelectedCamp/{campId}")]
+        public HttpResponseMessage DeleteSelectedCamp(int campId)
         {
+            try
+            {
+                campService.DeleteCampById(campId);
+            }
+            catch(Exception e)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e.Message);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

@@ -50,7 +50,7 @@ a:focus {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    width: 400px;
+    width: 500px;
     transition: all 0.3s ease;
 }
 #previewImage{

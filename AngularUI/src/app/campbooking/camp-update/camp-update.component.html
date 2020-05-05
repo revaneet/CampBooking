@@ -38,13 +38,13 @@
                     <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
                 <button type="submit" class="btn btn-primary" id="btn-primary">Update Camp</button>
-                <button type="submit" class="btn btn-danger ml-2" id="btn-primary">Delete Camp</button>
+                <button type="button" class="btn btn-danger ml-2" id="btn-primary" (click)="onDeleteClick()">Delete Camp</button>
 
               </form>
         </div>
         <div class="tm-recommended-price-box">
-            <img id="previewImage"  [src]="transform(camp.ImageFile)" *ngIf="imageUrl ==null" >
-            <img id="previewImage"  [src]="imageUrl" *ngIf="imageUrl !=null">
+            <img id="previewImage"  [src]="transform(camp.ImageFile)"  >
+            <!-- <img id="previewImage"  [src]="imageUrl" *ngIf="imageUrl !=null"> -->
         </div>                        
     </div>
 </div>

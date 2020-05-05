@@ -95,4 +95,10 @@ export class CampBookComponent implements OnInit{
         this.totalNights = Math.ceil(timeDiff / (1000 * 3600 * 24));    
 
     }
+    getControlValidationClasses(control: FormControl) {
+        return {
+          'is-invalid': control.touched && control.invalid,
+          'is-valid': control.touched && control.valid
+        };
+      }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CampService } from '../services/camp.service';
 import { Router } from '@angular/router';
+import { Camp } from '../models/camp.interface';
 
 @Component({
     selector : 'app-camp-new',
@@ -15,7 +16,8 @@ export class CampNewComponent implements OnInit{
     maxCapacity: FormControl;
     desc: FormControl;
     imageToUpload: File;
-    imageUrl: string;
+    image64Base:string;
+    camp:Camp;
 
     constructor(
         private campService: CampService,
@@ -37,7 +39,16 @@ export class CampNewComponent implements OnInit{
 
     async onFormSubmit()
     {
-        (await this.campService.postNewCamp(this.campForm, this.imageToUpload))
+        this.camp ={
+            CampName : this.campForm.get("campName").value,
+            RatePerNight : this.campForm.get("ratePerNight").value,
+            MaxCapacity: this.campForm.get("maxCapacity").value,
+            Description: this.campForm.get("desc").value,
+            Image : this.imageToUpload.name,
+            ImageFile: this.image64Base
+        };
+        
+        (await this.campService.postNewCamp(this.camp))
                         .subscribe(() => {
                             this.router.navigateByUrl('/Camp');
                         });
@@ -49,10 +60,14 @@ export class CampNewComponent implements OnInit{
 
         const reader = new FileReader();
         reader.onload = (event: any) => {
-            this.imageUrl = event.target.result;
-            };
+            this.image64Base = reader.result.toString().split(',')[1];
+            
+        };
         reader.readAsDataURL(this.imageToUpload);
 
+    }
+    transform(base64Image){
+        return 'data:image/jpeg;base64,' + base64Image;
     }
 
 }

@@ -69,3 +69,7 @@ a:focus {
 #camp-image{
     max-width: 450px;
 }
+.tm-about-text-wrap
+{
+    width: 600px;
+}

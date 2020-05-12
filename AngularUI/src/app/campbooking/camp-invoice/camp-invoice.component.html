@@ -58,7 +58,7 @@
                 <h2>{{camp.CampName}}</h2>
             </div> -->
             <div >
-                <img src="/assets/CampImages/{{booking.Camp.Image}}" id="camp-image">
+                <img [src]="transform(booking.Camp.ImageFile)" id="camp-image">
             </div>
             <div >
                 <div class="camp-details">

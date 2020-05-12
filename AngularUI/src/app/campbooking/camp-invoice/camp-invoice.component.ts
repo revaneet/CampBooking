@@ -70,6 +70,10 @@ export class CampInvoiceComponent implements OnInit{
         (await this.bookingService.putRatingByBookingId(this.bookingId, star)).subscribe();
         console.log('Value of star', star);
     }
+    transform(base64Image){
+        
+        return 'data:image/jpeg;base64,' + base64Image;
+    }
     
     
 }

@@ -49,6 +49,8 @@ namespace DataAccess.DatabaseModels
 
         public int Ratings { get; set; } = 0;
 
+        public bool ExtraChargesApplied { get; set; } = false;
+
         public virtual CampEntity CampEntity { get; set; }
 
         //public virtual UserEntity UserEntity { get; set; }

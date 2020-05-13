@@ -77,6 +77,14 @@
     <Compile Include="Migrations\202005041129424_Added Ratings.designer.cs">
       <DependentUpon>202005041129424_Added Ratings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005121038324_Added Extra Weekend Charges.cs" />
+    <Compile Include="Migrations\202005121038324_Added Extra Weekend Charges.designer.cs">
+      <DependentUpon>202005121038324_Added Extra Weekend Charges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005121223513_Added ExtraChargesApplied field.cs" />
+    <Compile Include="Migrations\202005121223513_Added ExtraChargesApplied field.designer.cs">
+      <DependentUpon>202005121223513_Added ExtraChargesApplied field.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -96,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005041129424_Added Ratings.resx">
       <DependentUpon>202005041129424_Added Ratings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005121038324_Added Extra Weekend Charges.resx">
+      <DependentUpon>202005121038324_Added Extra Weekend Charges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005121223513_Added ExtraChargesApplied field.resx">
+      <DependentUpon>202005121223513_Added ExtraChargesApplied field.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

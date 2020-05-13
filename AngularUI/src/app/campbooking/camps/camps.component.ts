@@ -58,6 +58,8 @@ export class CampsComponent implements OnInit{
                    .subscribe((camps: Camp[]) => {
                        this.camps = camps;
                        this.currentCampsToShow=camps;
+                       
+                       
         });
     }
     async getAllCamps()
@@ -67,6 +69,7 @@ export class CampsComponent implements OnInit{
                 this.camps = camps;
                 this.currentCampsToShow=camps.slice(0,4);
                 this.totalCamps = this.camps.length;
+                console.log(camps);
         });
     }
     onBooking(camp: Camp)

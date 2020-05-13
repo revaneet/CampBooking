@@ -15,7 +15,7 @@ a:focus {
     align-items: stretch;
     justify-content: space-around;
     margin-bottom: 25px;
-    height: 200px;
+    height: 220px;
 }
 
 .tm-recommended-title {
@@ -29,6 +29,7 @@ a:focus {
 .tm-recommended-description-box {
     padding: 20px;
     width: 500px;
+    
 }
 
 .tm-recommended-price-box {    
@@ -54,8 +55,8 @@ a:focus {
     -webkit-justify-content: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding-left: 25px;
-    width: 200px;
+    padding-left: 35px;
+    width: 220px;
     transition: all 0.3s ease;
 }
 
@@ -72,7 +73,10 @@ a:focus {
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
+    text-align: center;
+    
 }
+
 #filterForm-div{
     background-color: #69c6ba;
     color: white;
@@ -136,4 +140,9 @@ input{
 .tm-text-gray
 {
     margin-top: 0px;
+    margin-bottom: 0px;
+}
+.tm-warning{
+    color: #999999;
+    font-size: 0.6rem;
 }

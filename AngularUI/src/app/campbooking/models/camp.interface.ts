@@ -7,5 +7,6 @@ export interface Camp {
     Image: string;
     ImageFile?: string;
     Ratings?:number;
+    ExtraWeekendCharges?:number;
 
 }

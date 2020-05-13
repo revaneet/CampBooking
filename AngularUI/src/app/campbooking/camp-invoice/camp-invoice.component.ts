@@ -15,6 +15,8 @@ export class CampInvoiceComponent implements OnInit{
     totalAmount: number;
     stars: number[] = [1, 2, 3, 4, 5];
     selectedStarValue: number;
+    totalWeekends= 0;
+    extraChargesApplied=false;
     
     constructor(
         private route: ActivatedRoute,
@@ -30,6 +32,12 @@ export class CampInvoiceComponent implements OnInit{
                 this.getNumberofNights();
                 this.totalAmount = this.totalNights * this.booking.Camp.RatePerNight;
                 this.selectedStarValue = this.booking.Ratings;
+                this.extraChargesApplied  = this.booking.ExtraChargesApplied;
+                if(this.extraChargesApplied)
+                {
+                    this.getTotalWeekends(this.booking.CheckInDate,this.booking.CheckOutDate);
+                    console.log(this.totalWeekends);
+                }
         }) 
         
         console.log(this.booking);      
@@ -52,6 +60,21 @@ export class CampInvoiceComponent implements OnInit{
         var timeDiff = Math.abs(date2.getTime() - date1.getTime());
         this.totalNights = Math.ceil(timeDiff / (1000 * 3600 * 24));    
 
+    }
+    getTotalWeekends(date1, date2) {
+        var d1 = new Date(date1),
+            d2 = new Date(date2), 
+            isWeekend = false;
+    
+        while (d1 < d2) {
+            var day = d1.getDay();
+            isWeekend = (day === 6) || (day === 0) || (day==5); 
+            if (isWeekend) 
+            { 
+                this.totalWeekends++;
+            } // return immediately if weekend found
+            d1.setDate(d1.getDate() + 1);
+        }
     }
     async onCancelClick()
     {

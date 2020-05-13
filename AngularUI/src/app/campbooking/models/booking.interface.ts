@@ -12,4 +12,5 @@ export interface Booking{
     PhoneNumber: string;
     Camp?: Camp;
     Ratings?:number;
+    ExtraChargesApplied?:boolean;
 }

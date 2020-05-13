@@ -18,8 +18,9 @@ export class CampUpdateComponent implements OnInit{
     ratePerNight: FormControl;
     maxCapacity: FormControl;
     desc: FormControl;
+    extraWeekendCharges:FormControl;
     campImage: FormControl;
-    imageToUpload: File;
+    imageToUpload: File = null;
     imageUrl: string;
 
     constructor(
@@ -33,12 +34,15 @@ export class CampUpdateComponent implements OnInit{
         this.ratePerNight = new FormControl('', [Validators.required] );
         this.maxCapacity = new FormControl('', [Validators.required] );
         this.desc = new FormControl();
+        this.extraWeekendCharges=new FormControl();
         this.campImage=new FormControl('',[Validators.required] );
         this.campForm = new FormGroup({
             campName : this.campName,
             ratePerNight : this.ratePerNight,
             maxCapacity : this.maxCapacity,
-            desc : this.desc
+            desc : this.desc,
+            extraWeekendCharges: this.extraWeekendCharges
+
         });
 
         const campId = this.route.snapshot.paramMap.get('id');
@@ -49,8 +53,8 @@ export class CampUpdateComponent implements OnInit{
                     campName : this.camp.CampName,
                     ratePerNight : this.camp.RatePerNight,
                     maxCapacity : this.camp.MaxCapacity,
-                    desc : this.camp.Description
-                   
+                    desc : this.camp.Description,
+                    extraWeekendCharges: this.camp.ExtraWeekendCharges
                })
         });
     }
@@ -62,15 +66,16 @@ export class CampUpdateComponent implements OnInit{
             RatePerNight : this.campForm.get("ratePerNight").value,
             MaxCapacity: this.campForm.get("maxCapacity").value,
             Description: this.campForm.get("desc").value,
-            Image : this.imageToUpload.name,
-            ImageFile: this.camp.ImageFile
+            Image : this.imageToUpload===null? this.camp.Image : this.imageToUpload.name,
+            ImageFile: this.camp.ImageFile,
+            ExtraWeekendCharges:this.campForm.get("extraWeekendCharges").value
         };
         (await this.campService.putCampById(this.camp.ID,this.updateCamp))
         .subscribe(()=>{
             alert("Camp Updated Successfully !");
             this.router.navigate(["/Camps"]);
         });
-
+        console.log(this.updateCamp);
     }
     async onDeleteClick()
     {

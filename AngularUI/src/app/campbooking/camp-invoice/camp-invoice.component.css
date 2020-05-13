@@ -61,7 +61,7 @@ a:focus {
 }
 #camp-image{
     max-width: 300px;
-    
+    justify-content: space-evenly;
 }
 h1{
     font-size: 3rem;
@@ -73,6 +73,10 @@ h2{
 }
 .invoice{
     margin-top: 30px;
+}
+.invoice-header{
+    justify-content: space-evenly;
+    
 }
 p{
     margin-top: 2px;

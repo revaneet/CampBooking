@@ -44,6 +44,8 @@ namespace Shared.DTOModels
 
         public int Ratings { get; set; }
 
+        public bool ExtraChargesApplied { get; set; } 
+
         public CampDTO Camp { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace Shared.DTOModels
         [Required]
         public int RatePerNight { get; set; }
 
+        public int ExtraWeekendCharges { get; set; }
+
         [Required]
         public int MaxCapacity { get; set; }
 

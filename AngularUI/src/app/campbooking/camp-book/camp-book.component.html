@@ -46,7 +46,7 @@
                     <div class="invalid-feedback" *ngIf="phoneNumber.touched && phoneNumber.errors?.required">Please fill out this field.</div>
                 </div>
                 
-                <button type="submit" class="btn btn-primary" id="btn-primary">Confirm Booking</button>
+                <button type="submit" class="btn btn-primary" id="btn-primary" [disabled]="!bookingForm.valid">Confirm Booking</button>
 
               </form>
         </div>
@@ -60,15 +60,21 @@
                     <h2>
                         Total Amount : {{totalAmount}} INR
                     </h2>
+                    <h2 *ngIf="totalWeekends>0 && camp.ExtraWeekendCharges>0">
+                        Extra Weekend Charges : {{totalWeekends * camp.ExtraWeekendCharges}} INR
+                    </h2>
+                    <h2 *ngIf="totalWeekends>0 && camp.ExtraWeekendCharges>0">
+                        Total Amount : {{totalAmount +(totalWeekends * camp.ExtraWeekendCharges)}} INR
+                    </h2>
                     <h2>
                         Total Nights : {{totalNights}} Nights
                     </h2>
                 </div>
                 
-                <p class=".tm-text-highlight">Max Capacity: {{camp.MaxCapacity}} </p>
-                <p class=".tm-text-highlight">Rate per Night: {{camp.RatePerNight}} INR </p>
-                <p class=".tm-text-highlight">CheckIn: {{campFilter.CheckInDate}} </p>
-                <p class=".tm-text-highlight">CheckOut: {{campFilter.CheckOutDate}} </p>        
+                <p class="tm-text-highlight">Max Capacity: {{camp.MaxCapacity}} </p>
+                <p class="tm-text-highlight">Rate per Night: {{camp.RatePerNight}} INR </p>
+                <p class="tm-text-highlight">CheckIn: {{campFilter.CheckInDate}} </p>
+                <p class="tm-text-highlight">CheckOut: {{campFilter.CheckOutDate}} </p>        
             </div> 
         </div>                        
     </div>

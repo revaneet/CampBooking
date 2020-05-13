@@ -54,8 +54,9 @@ namespace DataAccess
         // Get all Camps
         public List<CampDTO> GetAllFilteredCampsDB(Dictionary<string,string> filters)
         {
+            IQueryable<CampEntity> favourableCampsEntity;
+            IQueryable<CampEntity> unfavourableCampsEntity;
             IQueryable<CampEntity> allCampsEntity;
-            IQueryable<CampEntity> allCampsEntity2;
             List<CampDTO> allCampsDTO = new List<CampDTO>();
             try
             {
@@ -68,31 +69,55 @@ namespace DataAccess
                 //                              && DateTime.Parse(filters["checkOut"]) <= b.CheckInDate
                 //                        select b.CampID).Contains(c.ID) && c.MaxCapacity >= Int32.Parse(filters["capacity"])
                 //                 select c;
+                allCampsEntity = from c in db.Camps
+                                 where c.MaxCapacity >= capacity &&
+                                        ((from b in db.Bookings
+                                          where DateTime.Compare(checkIn,b.CheckOutDate)>=0 || DateTime.Compare(checkOut,b.CheckInDate)<=0
+                                          select b.CampID).Contains(c.ID)
+                                        || !(from b in db.Bookings
+                                             select b.CampID).Contains(c.ID))
 
-                allCampsEntity = (from c in db.Camps
-                                  from b in db.Bookings
-                                  where c.MaxCapacity >= capacity
-                                        &&  ((c.ID == b.CampID) &&
-                                            (checkIn >= b.CheckOutDate
-                                            || checkOut <= b.CheckInDate))
 
-                                  select c);
+                                 select c;
 
-                allCampsEntity2 = (
-                                    from c in db.Camps
-                                    where c.MaxCapacity >= capacity
-                                    select c
-                                    ).Except
-                                    (
-                                        (from c in db.Camps
-                                         from b in db.Bookings
-                                         where c.ID == b.CampID
-                                         select c).Distinct()
+                //(checkIn >= b.CheckOutDate || checkOut <= b.CheckInDate)
+                //favourableCampsEntity = (from c in db.Camps
+                //                         where c.MaxCapacity >= capacity
+                //                         select c)
+                //                        .Except
+                //                        (
+                //                            from c in db.Camps
+                //                            where c.MaxCapacity < capacity ||
+                //                                   !(from b in db.Bookings
+                //                                     where (checkIn >= b.CheckOutDate || checkOut <= b.CheckInDate)
+                //                                     select b.CampID).Contains(c.ID)
+                //                            select c
 
-                                    ).Distinct();
+                //                        );
+                //allCampsEntity = (from c in db.Camps
+                //                  from b in db.Bookings
+                //                  where c.MaxCapacity >= capacity
+                //                        &&  ( (c.ID == b.CampID) && (checkIn >= b.CheckOutDate
+                //                                                     || checkOut <= b.CheckInDate)
+                //                            )
+
+                //                  select c);
+
+                //allCampsEntity2 = (
+                //                    from c in db.Camps
+                //                    where c.MaxCapacity >= capacity
+                //                    select c
+                //                    ).Except
+                //                    (
+                //                        (from c in db.Camps
+                //                         from b in db.Bookings
+                //                         where c.ID == b.CampID
+                //                         select c).Distinct()
+
+                //                    ).Distinct();
 
                 allCampsEntity.ToList().ForEach(c => allCampsDTO.Add(iMapper.Map<CampEntity, CampDTO>(c)));
-                allCampsEntity2.ToList().ForEach(c => allCampsDTO.Add(iMapper.Map<CampEntity, CampDTO>(c)));
+                //allCampsEntity2.ToList().ForEach(c => allCampsDTO.Add(iMapper.Map<CampEntity, CampDTO>(c)));
                 return allCampsDTO;
             }
             catch (Exception e)
@@ -196,6 +221,7 @@ namespace DataAccess
                 bookingEntity.Ratings = bookingDTO.Ratings;
                 bookingEntity.State = bookingDTO.State;
                 bookingEntity.ZipCode = bookingDTO.ZipCode;
+     
                 db.SaveChanges();
 
                 UpdateRatings(bookingDTO.CampID);
@@ -284,6 +310,7 @@ namespace DataAccess
                 campEntity.ImageFile = campDTO.ImageFile;
                 campEntity.RatePerNight = campDTO.RatePerNight;
                 campEntity.MaxCapacity = campDTO.MaxCapacity;
+                campEntity.ExtraWeekendCharges = campDTO.ExtraWeekendCharges;
                 db.SaveChanges();
 
             }

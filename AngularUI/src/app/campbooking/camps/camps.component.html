@@ -57,10 +57,13 @@
                                 </ul>
                             </div>
                         </div>
-                        <p class="tm-text-gray">{{camp.Description}}</p>   
+                        <p class="tm-text-gray">{{camp.Description}}</p>  
+                        <p class="tm-warning">*Extra nights charges may apply on weekends.</p> 
                     </div>
                     <a class="tm-recommended-price-box" (click)="onBooking(camp)">
                         <p class="tm-recommended-price">INR {{camp.RatePerNight}}</p>
+                        <p class="tm-recommended-price-link" *ngIf="camp.ExtraWeekendCharges>0">*Extra weekend charges</p>
+                        <p class="tm-recommended-price" *ngIf="camp.ExtraWeekendCharges>0">INR {{camp.ExtraWeekendCharges}}</p>
                         <p class="tm-recommended-price-link">Book Now</p>
                     </a>                        
                 </div>    

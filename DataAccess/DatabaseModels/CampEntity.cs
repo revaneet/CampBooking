@@ -19,6 +19,8 @@ namespace DataAccess.DatabaseModels
         [Required]
         public int RatePerNight { get; set; }
 
+        public int ExtraWeekendCharges { get; set; } = 0;
+
         [Required]
         public int MaxCapacity { get; set; }
 

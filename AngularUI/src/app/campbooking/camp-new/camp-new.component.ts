@@ -13,8 +13,10 @@ export class CampNewComponent implements OnInit{
     campForm: FormGroup;
     campName: FormControl;
     ratePerNight: FormControl;
+    extraWeekendCharges:FormControl;
     maxCapacity: FormControl;
     desc: FormControl;
+    campImage:FormControl;
     imageToUpload: File;
     image64Base:string;
     camp:Camp;
@@ -28,12 +30,15 @@ export class CampNewComponent implements OnInit{
         this.campName = new FormControl('', [Validators.required] );
         this.ratePerNight = new FormControl('', [Validators.required] );
         this.maxCapacity = new FormControl('', [Validators.required] );
+        this.extraWeekendCharges = new FormControl('', [Validators.required] );
         this.desc = new FormControl();
+        this.campImage =new FormControl();
         this.campForm = new FormGroup({
             campName : this.campName,
             ratePerNight : this.ratePerNight,
             maxCapacity : this.maxCapacity,
-            desc : this.desc
+            desc : this.desc,
+            extraWeekendCharges: this.extraWeekendCharges
         });
     }
 
@@ -70,6 +75,7 @@ export class CampNewComponent implements OnInit{
         return 'data:image/jpeg;base64,' + base64Image;
     }
     getControlValidationClasses(control: FormControl) {
+        
         return {
           'is-invalid': control.touched && control.invalid,
           'is-valid': control.touched && control.valid

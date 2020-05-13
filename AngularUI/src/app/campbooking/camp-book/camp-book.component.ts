@@ -20,6 +20,7 @@ export class CampBookComponent implements OnInit{
     camp: Camp;
     totalAmount:number;
     totalNights:number;
+    totalWeekends=0;
 
     bookingForm: FormGroup;
     billingAddress: FormControl;
@@ -60,12 +61,15 @@ export class CampBookComponent implements OnInit{
                 this.campFilter = this.data.campFilter;
                 this.getNumberofNights();
                 this.totalAmount = this.totalNights * this.camp.RatePerNight;
+                this.getTotalWeekends(this.campFilter.CheckInDate,this.campFilter.CheckOutDate);
+                console.log(this.totalWeekends);
         });
         
         
     }
     async onFormSubmit()
     {
+        const extraChargesApplied = this.totalWeekends>0 && this.camp.ExtraWeekendCharges>0;
         this.booking = {
             BillingAddress : this.bookingForm.get('billingAddress').value,
             Country : this.bookingForm.get('country').value,
@@ -74,7 +78,8 @@ export class CampBookComponent implements OnInit{
             CheckOutDate: this.campFilter.CheckOutDate,
             PhoneNumber: this.bookingForm.get('phoneNumber').value,
             ZipCode: this.bookingForm.get('zipCode').value,
-            CampID: this.camp.ID
+            CampID: this.camp.ID,
+            ExtraChargesApplied:extraChargesApplied
         };
         console.log(this.booking);
         (await this.bookingService.postBooking(this.booking))
@@ -100,5 +105,20 @@ export class CampBookComponent implements OnInit{
           'is-invalid': control.touched && control.invalid,
           'is-valid': control.touched && control.valid
         };
-      }
+    }
+    getTotalWeekends(date1, date2) {
+        var d1 = new Date(date1),
+            d2 = new Date(date2), 
+            isWeekend = false;
+    
+        while (d1 < d2) {
+            var day = d1.getDay();
+            isWeekend = (day === 6) || (day === 0) || (day==5); 
+            if (isWeekend) 
+            { 
+                this.totalWeekends++;
+            } // return immediately if weekend found
+            d1.setDate(d1.getDate() + 1);
+        }
+    }
 }
